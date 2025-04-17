@@ -1,0 +1,279 @@
+:root {
+  --card-bg-light: rgba(0, 0, 0, 0.05); /* Background card di mode terang */
+  --card-bg-dark: rgba(255, 255, 255, 0.05); /* Background card di mode gelap */
+  --card-border-light: rgba(0, 0, 0, 0.1); /* Border di mode terang */
+  --card-border-dark: rgba(255, 255, 255, 0.2); /* Border di mode gelap */
+  --text-color-light: #1a1a1a; /* Warna teks di mode terang */
+  --text-color-dark: #f5f5f5; /* Warna teks di mode gelap */
+  --tab-active-color: #3eaf7c;
+  --tab-hover-bg-light: #f0fdf4;
+  --tab-hover-bg-dark: #1f2d26;
+}
+
+html.light {
+  --card-bg: var(--card-bg-light);
+  --card-border: var(--card-border-light);
+  --text-color: var(--text-color-light);
+}
+
+html.dark {
+  --card-bg: var(--card-bg-dark);
+  --card-border: var(--card-border-dark);
+  --text-color: var(--text-color-dark);
+}
+
+.project-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  width: 220px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--card-border); /* Border mengikuti mode tema */
+  transition: 0.3s;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.project-info {
+  background: var(--card-border); /* Warna mengikuti mode tema */
+  padding: 10px;
+  border-radius: 8px;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.highlight {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  color: var(--text-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.highlight h3,
+.highlight h4,
+.highlight p {
+  margin: 0 0 1rem 0;
+}
+
+.highlight pre {
+  background-color: transparent !important; /* biar warnanya ngikut container */
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.highlight code {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1rem;
+  display: block;
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+/* Tab container */
+.tabs .tab-nav {
+  display: flex;
+  border-bottom: 1px solid var(--vp-c-divider);
+  margin-bottom: 1em;
+}
+
+/* Setiap tab */
+.tabs .tab-nav .tab {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.tabs .tab-nav .tab:hover {
+  color: var(--vp-c-brand-light);
+}
+
+/* Tab aktif */
+.tabs .tab-nav .tab.active {
+  color: var(--vp-c-brand);
+  border-bottom-color: var(--vp-c-brand);
+}
+
+/* Konten tab */
+.tabs .tab-content {
+  color: var(--vp-c-text-1);
+}
+
+/* Konten dalam tab (misal code blocks, teks) */
+.tabs .tab-content {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1rem;
+  border-radius: 8px;
+  color: var(--text-color);
+}
+
+.button {
+  background-color: var(--vp-c-bg-alt); /* lebih kontras dari bg-soft */
+  color: var(--vp-c-text-1);
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  border: 1px solid var(--vp-c-border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--vp-c-bg-hover);
+  border-color: var(--vp-c-brand-1);
+  transform: translateY(-2px);
+}
+
+.custom-collapse details {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5em 0;
+  background-color: var(--vp-c-bg-soft);
+  transition: background-color 0.3s ease;
+}
+
+.custom-collapse summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  padding: 1em;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  background-color: var(--vp-c-bg-alt);
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.custom-collapse summary:hover {
+  background-color: var(--vp-c-bg);
+}
+
+.custom-collapse summary::before {
+  content: "▸";
+  transition: transform 0.3s ease;
+  font-size: 0.9em;
+  color: var(--vp-c-brand);
+}
+
+.custom-collapse details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.custom-collapse details .collapse-content {
+  padding: 1em;
+  border-top: 1px solid var(--vp-c-divider);
+  background-color: var(--vp-c-bg);
+}
+
+/* Paksa warna ikon copy biar selalu terlihat */
+.copy svg,
+.copy svg path {
+  fill: var(--vp-c-text-1) !important; /* Ikuti warna teks utama (auto adapt light/dark) */
+}
+
+/* Hover biar interaktif */
+.copy:hover svg,
+.copy:hover svg path {
+  fill: var(--vp-c-brand) !important; /* Warna brand saat hover */
+}
+
+.copy svg {
+  transition: fill 0.2s ease;
+}
+
+.stake-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.stake-button {
+  display: flex;
+  align-items: center;
+  background: var(--vp-c-bg-alt); /* ini bakal adapt ke light/dark */
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid var(--vp-c-divider); /* adaptif juga */
+  transition: all 0.3s ease;
+  color: var(--vp-c-text-1); /* biar teksnya juga adaptif */
+}
+
+.stake-button:hover {
+  transform: scale(1.05);
+  border-color: var(--vp-c-brand);
+  background: var(--vp-c-bg-soft);
+}
+
+.icon-wrapper {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-right: 0.5rem;
+}
+
+.icon-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.stake-button:hover img {
+  transform: rotate(15deg);
+}
+
+.stake-button span {
+  color: var(--vp-c-text-1); /* adaptif */
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .stake-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
