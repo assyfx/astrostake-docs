@@ -165,6 +165,8 @@ DROSERA_PRIVATE_KEY=PrivKey drosera apply
 **3. Download dan Ekstrak Operator CLI**
 ```bash
 curl -LO https://github.com/drosera-network/releases/releases/download/v1.16.2/drosera-operator-v1.16.2-x86_64-unknown-linux-gnu.tar.gz
+```
+```bash
 tar -xvf drosera-operator-v1.16.2-x86_64-unknown-linux-gnu.tar.gz
 ```
 
@@ -187,6 +189,7 @@ drosera-operator register --eth-rpc-url https://ethereum-holesky-rpc.publicnode.
 ## Setup Systemd
 
 :::info 1. Buat File Service Systemd
+ganti `Priv_Key` dan `VPS_IP`
 ```bash
 sudo tee /etc/systemd/system/drosera.service > /dev/null <<EOF
 [Unit]
@@ -198,7 +201,14 @@ User=$USER
 Restart=always
 RestartSec=15
 LimitNOFILE=65535
-ExecStart=$(which drosera-operator) node --db-file-path $HOME/.drosera.db --network-p2p-port 31313 --server-port 31314     --eth-rpc-url https://ethereum-holesky-rpc.publicnode.com     --eth-backup-rpc-url https://1rpc.io/holesky     --drosera-address 0xea08f7d533C2b9A62F40D5326214f39a8E3A32F8     --eth-private-key Priv_Key     --listen-address 0.0.0.0     --network-external-p2p-address VPS_IP     --disable-dnr-confirmation true
+ExecStart=$(which drosera-operator) node --db-file-path $HOME/.drosera.db --network-p2p-port 31313 --server-port 31314 \
+    --eth-rpc-url https://ethereum-holesky-rpc.publicnode.com \
+    --eth-backup-rpc-url https://1rpc.io/holesky \
+    --drosera-address 0xea08f7d533C2b9A62F40D5326214f39a8E3A32F8 \
+    --eth-private-key Priv_Key \
+    --listen-address 0.0.0.0 \
+    --network-external-p2p-address VPS_IP \
+    --disable-dnr-confirmation true
 
 [Install]
 WantedBy=multi-user.target
