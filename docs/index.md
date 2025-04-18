@@ -15,6 +15,13 @@ We provide technical assistance, snapshots, one-click commands, and troubleshoot
 ## Project Service List
 
 <div class="project-grid">
+<a href="/id/drosera/" class="project-card">
+    <img src="/logos/drosera.png" alt="Drosera" />
+    <div class="project-info">
+      <strong>Drosera</strong>
+    </div>
+  </a>
+  
   <a href="/0g-labs/" class="project-card">
     <img src="/logos/0g.png" alt="Zero Gravity" />
     <div class="project-info">

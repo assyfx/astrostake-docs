@@ -141,7 +141,7 @@ html.dark {
   color: var(--text-color);
 }
 
-.button {
+.custom-button {
   background-color: var(--vp-c-bg-alt); /* lebih kontras dari bg-soft */
   color: var(--vp-c-text-1);
   padding: 10px 18px;
@@ -154,7 +154,7 @@ html.dark {
   transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
 
-.button:hover {
+.custom-button:hover {
   background-color: var(--vp-c-bg-hover);
   border-color: var(--vp-c-brand-1);
   transform: translateY(-2px);
@@ -277,3 +277,4 @@ html.dark {
     gap: 1rem;
   }
 }
+
