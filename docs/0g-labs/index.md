@@ -32,7 +32,7 @@ This guide offers step-by-step instructions for:
 - **Snapshot Integration:** Instructions on integrating snapshots to expedite synchronization.
 - **Useful Commands:** Commands for monitoring and managing the node.
 
-For a comprehensive walkthrough, visit the [Storage Node Setup Guide](./storage-node).
+For a comprehensive walkthrough, visit the [Storage Node Setup Guide](./storage-node-v3-chain).
 
 ---
 

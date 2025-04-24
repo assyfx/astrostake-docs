@@ -14,26 +14,24 @@ Kami menyediakan bantuan teknis, snapshot, perintah sekali klik, dan solusi trou
 
 ## Daftar Layanan Proyek
 
-<div class="project-grid">
-<a href="/id/drosera/" class="project-card">
-    <img src="/logos/drosera.png" alt="Drosera" />
-    <div class="project-info">
-      <strong>Drosera</strong>
+<div class="stake-buttons">
+  <a href="/id/drosera/" class="stake-button">
+    <div class="icon-wrapper">
+      <img src="/logos/drosera.png" alt="Drosera Logo" />
     </div>
+    <span>Drosera</span>
   </a>
-
-  <a href="/id/0g-labs/" class="project-card">
-    <img src="/logos/0g.png" alt="Zero Gravity" />
-    <div class="project-info">
-      <strong>OG Labs</strong>
+  <a href="/id/0g-labs/" class="stake-button">
+    <div class="icon-wrapper">
+      <img src="/logos/0g.png" alt="OG Labs Logo" />
     </div>
+    <span>OG Labs</span>
   </a>
-
-  <a href="/id/vana/dlp" class="project-card">
-    <img src="/logos/vana.png" alt="VANA" />
-    <div class="project-info">
-      <strong>VANA</strong>
+  <a href="/id/vana/dlp" class="stake-button">
+    <div class="icon-wrapper">
+      <img src="/logos/vana.png" alt="VANA Logo" />
     </div>
+    <span>VANA</span>
   </a>
 </div>
 

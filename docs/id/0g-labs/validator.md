@@ -1,17 +1,18 @@
 # Validator Node
 
-This guide will help you set up a Validator Node for OG Labs. For official documentation, check [here.](https://docs.0g.ai/run-a-node/validator-node)
+Panduan ini akan bantu kamu untuk setup Validator Node di jaringan 0G Labs.  
+Untuk dokumentasi resmi, cek [di sini.](https://docs.0g.ai/run-a-node/validator-node)
 
-## Requirements
+## Kebutuhan
 
-- CPU: 8 Cores
-- Memory: 64GB RAM
-- Disk: 1 TB of storage (NVME)
+- CPU: 8 Core  
+- Memori: 64 GB RAM  
+- Penyimpanan: 1 TB NVME  
 - Bandwidth: 100 Mbps (Download / Upload)
 
-## Install
+## Instalasi
 
-**1. Install dependencies**
+**1. Install dependency**
 ```
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl git wget htop tmux build-essential jq make lz4 gcc unzip -y
@@ -19,42 +20,41 @@ sudo apt install curl git wget htop tmux build-essential jq make lz4 gcc unzip -
 
 <div class="highlight">
 
-### 2. Auto-install script powered by ITRocket 🚀
+### 2. Auto-install script dari ITRocket 🚀
 
-Smooth, reliable, and straight to the point — just how we like it at **AstroStake**.
+Cepat, stabil, dan langsung to the point — seperti yang biasa kita suka di **AstroStake**.
 
-_Why write it from scratch when it’s already clean and battle-tested?_
-
-**Huge thanks to [ITRocket](https://itrocket.net) for keeping things clean and effortless.**
+_Kenapa harus buat dari nol kalau udah ada yang rapi dan terbukti?_  
+**Terima kasih banyak buat [ITRocket](https://itrocket.net) yang bikin semuanya simpel dan praktis!**
 
 ```bash
 source <(curl -s https://itrocket.net/api/testnet/og/autoinstall/)
 ```
 </div>
 
-**3. Setup wallet**
+**3. Setup Wallet**
 
 :::tabs
-== Create Wallet
-To create a new wallet, use the following command. Don’t forget to save the mnemonic
+== Buat Wallet
+Untuk membuat wallet baru, gunakan perintah ini. Jangan lupa simpan mnemonic-nya!
 ```
 0gchaind keys add $WALLET
 ```
-== Restore Wallet
-To restore existing wallet, use the following command
+
+== Pulihkan Wallet
+Kalau sudah punya wallet sebelumnya:
 ```
 0gchaind keys add $WALLET --recover
 ```
-== Restore Wallet (EVM)
-If you use metamask or EVM, use this command to restore your wallet
 
+== Pulihkan Wallet (EVM)
+Untuk pengguna metamask atau wallet EVM:
 ```
 0gchaind keys add $WALLET --eth --recover
 ```
 :::
 
-**Save wallet and validator address**
-
+**Simpan alamat wallet dan validator**
 ```
 WALLET_ADDRESS=$(0gchaind keys show $WALLET -a)
 VALOPER_ADDRESS=$(0gchaind keys show $WALLET --bech val -a)
@@ -63,9 +63,9 @@ echo "export VALOPER_ADDRESS="$VALOPER_ADDRESS >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
-**4. Check block sync**
+**4. Cek status blok sync**
 
-Script by ITRocket
+Script dari ITRocket
 ```
 #!/bin/bash
 rpc_port=$(grep -m 1 -oP '^laddr = "\K[^"]+' "$HOME/.0gchain/config/config.toml" | cut -d ':' -f 3)
@@ -74,32 +74,34 @@ while true; do
   network_height=$(curl -s https://og-testnet-rpc.itrocket.net/status | jq -r '.result.sync_info.latest_block_height')
 
   if ! [[ "$local_height" =~ ^[0-9]+$ ]] || ! [[ "$network_height" =~ ^[0-9]+$ ]]; then
-    echo -e "\033[1;31mError: Invalid block height data. Retrying...\033[0m"
+    echo -e "mError: Data blok tidak valid. Coba lagi..."
     sleep 5
     continue
   fi
 
   blocks_left=$((network_height - local_height))
-  echo -e "\033[1;33mNode Height:\033[1;34m $local_height\033[0m \033[1;33m| Network Height:\033[1;36m $network_height\033[0m \033[1;33m| Blocks Left:\033[1;31m $blocks_left\033[0m"
+  echo -e "mNode Height:m $local_height m| Network Height:m $network_height m| Sisa Blok:m $blocks_left"
   sleep 5
 done
 ```
 
-**5. Check node status**
+**5. Cek status node**
 
-Make sure `"catching_up": false`
+Pastikan hasilnya `"catching_up": false`
 ```
 0gchaind status 2>&1 | jq
 ```
 
-**6. Create Validator**
+**6. Buat Validator**
 
-Check your balances first. change `wallet_name`
+Pastikan saldo kamu cukup. Ganti `wallet_name` dengan nama wallet kamu.
 ```
 0gchaind q bank balances $(0gchaind keys show "wallet_name" -a)
 ```
-:::info Edit Validator Info
-Edit `moniker` `identity` `website` `details`
+
+:::info Edit Info Validator
+
+Edit `moniker`, `identity`, `website`, dan `details` sesuai keinginan.
 
 `amount` 1000000ua0gi = 1 A0GI
 ```
@@ -121,19 +123,19 @@ Edit `moniker` `identity` `website` `details`
 ```
 :::
 
-**Check Validator info**
+**Cek info validator**
 
-change `wallet_name`
+Ganti `wallet_name` dengan wallet kamu:
 ```
 0gchaind q staking validator $(0gchaind keys show "wallet_name" --bech val -a)
 ```
 
-## Delete node
+## Hapus Node
 
-::: danger ⚠️ Critical: Backup Your Validator Key!
-Do **not** lose this key — it is required to run your validator.
+::: danger ⚠️ Penting: Backup Kunci Validator Kamu!
+Jangan sampai hilang — kunci ini wajib untuk jalankan validator kamu.
 
-File location: `/root/.0gchain/config/priv_validator_key.json`
+Lokasi file: `/root/.0gchain/config/priv_validator_key.json`
 :::
 
 ```

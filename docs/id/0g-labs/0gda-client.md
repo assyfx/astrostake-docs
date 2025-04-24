@@ -1,31 +1,26 @@
-# 0G DA Client Setup Guide
 
-## Requirements
-- Memory: 8 GB RAM
-- CPU: 2 Cores
+# Panduan Setup 0G DA Client
+
+## Kebutuhan Sistem
+- Memori: 8 GB RAM
+- CPU: 2 Core
 - Disk: -
 - Bandwidth: 100 Mbps (Download / Upload)
 
-## Install
+## Instalasi
 
-1. **Install necessary packages**
+1. **Install paket yang dibutuhkan**
 ```
 sudo apt-get update
 sudo apt-get install cmake
 ```
-2. **Install go**
+
+2. **Install Go**
 ```
-cd $HOME && \
-ver="1.22.0" && \
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
-sudo rm -rf /usr/local/go && \
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
-rm "go$ver.linux-amd64.tar.gz" && \
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile && \
-source ~/.bash_profile && \
-go version
+cd $HOME && ver="1.22.0" && wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && rm "go$ver.linux-amd64.tar.gz" && echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile && source ~/.bash_profile && go version
 ```
-3. **Download and run Docker**
+
+3. **Download dan jalankan Docker**
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 ```
@@ -35,23 +30,27 @@ sudo usermod -aG docker $USER && newgrp docker
 ```
 sudo systemctl enable docker.service && sudo systemctl enable containerd.service
 ```
+
 4. **Clone 0G DA Client**
 ```
 git clone https://github.com/0glabs/0g-da-client.git
 ```
-5. **Build docker image**
+
+5. **Build image Docker**
 ```
 cd 0g-da-client
 docker build -t da-client -f combined.Dockerfile .
 ```
-6. Create environment file
+
+6. **Buat file environment**
 ```
 nano envfile.env
 ```
-:::info Edit env file
 
-Please check and enter 
-`COMBINED_SERVER_PRIVATE_KEY` `BATCHER_ENCODER_ADDRESS`
+:::info Edit file environment
+
+Silakan cek dan isi nilai untuk 
+`COMBINED_SERVER_PRIVATE_KEY` dan `BATCHER_ENCODER_ADDRESS`
 
 ```
 # envfile.env
@@ -85,16 +84,17 @@ BATCHER_CHAIN_WRITE_TIMEOUT=13s
 ```
 :::
 
-7. **Run docker container**
+7. **Jalankan container Docker**
 ```
 docker run -d --env-file envfile.env --name da-client -v ./run:/runtime -p 51001:51001 da-client
 ```
-8. **Check logs**
+
+8. **Cek log**
 ```
 docker logs -f da-client
 ```
 
-## Stop node
+## Hentikan node
 ```
 docker stop da-client
 ```

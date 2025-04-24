@@ -1,43 +1,44 @@
-# Storage Node Setup Guide
+# Panduan Setup Storage Node
 
-This guide will help you set up a Storage Node for OG Labs.
-For official documentation, check [here](https://docs.0g.ai/run-a-node/storage-node).
+Panduan ini akan bantu kamu untuk setup Storage Node di jaringan 0G Labs.  
+Untuk dokumentasi resmi, kamu bisa cek [di sini](https://docs.0g.ai/run-a-node/storage-node).
 
-## Requirements
-- Memory: 16 GB RAM
-- CPU: 4 Cores
-- Disk: 500GB / 1TB NVME SSD
+## Kebutuhan Sistem
+- Memori: 16 GB RAM  
+- CPU: 4 Core  
+- Disk: 500GB / 1TB NVME SSD  
 - Bandwidth: 100 Mbps (Download / Upload)
 
-## One Click Command Install
+## Instalasi Satu Klik
 
 :::tabs key:ab
-== Standard config
+== Konfigurasi Standar
 ```
 bash <(wget -qO- https://astrostake.xyz/0g_storage_node_one_click_standard.sh)
 ```
-== Turbo config
+== Konfigurasi Turbo
 ```
 bash <(wget -qO- https://astrostake.xyz/0g_storage_node_one_click_turbo.sh)
 ```
 :::
 
-## One Click Command Update
+## Update Satu Klik
 
-Version: `v0.8.7`
+Versi: `v0.8.7`
 
 ```
 bash <(wget -qO- https://astrostake.xyz/storage_node_update.sh)
 ```
 
-## Manual Install
+## Instalasi Manual
 
-1. **Install necessary packages**
+1. **Install paket yang dibutuhkan**
 ```
 sudo apt-get update
 sudo apt-get install clang cmake build-essential openssl pkg-config libssl-dev
 ```
-2. **Install go**
+
+2. **Install Go**
 ```
 cd $HOME && \
 ver="1.22.0" && \
@@ -49,6 +50,7 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile && \
 source ~/.bash_profile && \
 go version
 ```
+
 3. **Install rustup**
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -56,7 +58,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```sh
 . "$HOME/.cargo/env"
 ```
-4. **Download and Install 0G Storage Node**
+
+4. **Download dan install 0G Storage Node**
 ```
 git clone -b v0.8.6 https://github.com/0glabs/0g-storage-node.git
 ```
@@ -68,26 +71,28 @@ git checkout v0.8.7
 git submodule update --init
 cargo build --release
 ```
-5. **Set config (choose one)**
+
+5. **Set config (pilih salah satu)**
 
 :::tabs key:ab
-== Standard config
+== Konfigurasi Standar
 ```
 rm -rf $HOME/0g-storage-node/run/config.toml
 curl -o $HOME/0g-storage-node/run/config.toml https://astrostake.xyz/0g_storage_standard_config.toml
 ```
-== Turbo config
+== Konfigurasi Turbo
 ```
 rm -rf $HOME/0g-storage-node/run/config.toml
 curl -o $HOME/0g-storage-node/run/config.toml https://astrostake.xyz/0g_storage_turbo_config.toml
 ```
 :::
 
-check `miner_key` and input your private key
+Cek bagian `miner_key` dan masukkan private key kamu
 ```
 nano $HOME/0g-storage-node/run/config.toml
 ```
-6. **Create service**
+
+6. **Buat service**
 ```
 sudo tee /etc/systemd/system/zgs.service > /dev/null <<EOF
 [Unit]
@@ -106,37 +111,39 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
-7. **Star service**
+
+7. **Mulai service**
 ```
 sudo systemctl daemon-reload && sudo systemctl enable zgs && sudo systemctl start zgs
 ```
 
-## Optional: [Install Snapshot](https://docs.astrostake.xyz/0g-labs/snapshot)
+## Opsional: [Install Snapshot](https://docs.astrostake.xyz/0g-labs/snapshot)
 
-## Useful Commands
-**Check Full Logs**
+## Perintah Berguna
+
+**Lihat log lengkap**
 ```
 tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
 ```
 
-**Check Blocks and Peers**
+**Cek blok dan peers**
 ```
 source <(curl -s https://astrostake.xyz/check_block.sh)
 ```
 
-**Change RPC**
+**Ganti RPC**
 ```
 bash <(wget -qO- https://astrostake.xyz/change_storage_rpc.sh)
 ```
 
-## Stop and delete node
+## Stop dan hapus node
 
-Stop
+**Stop**
 ```
 sudo systemctl stop zgs
 ```
 
-Delete
+**Hapus**
 ```
 sudo systemctl disable zgs
 sudo rm /etc/systemd/system/zgs.service

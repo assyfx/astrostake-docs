@@ -1,66 +1,69 @@
 # Snapshot
 
-While we provide snapshots for those who need them, they are not the primary method and are **used at your own risk.** For better security and reliability, syncing from scratch is always the best choice. Use snapshots only if you fully understand the risks.
+Kami menyediakan snapshot untuk yang membutuhkan, tapi ini **bukan metode utama** dan digunakan **dengan risiko sendiri.** Untuk keamanan dan stabilitas terbaik, disarankan tetap sinkronisasi dari awal. Gunakan snapshot hanya jika kamu benar-benar paham risikonya.
 
 <div class="highlight">
 
-### Snapshot Status
+### Status Snapshot
 
-**Status:** 🟢 Available
+**Status:** 🟢 Tersedia
 
-The snapshot is now available for download. Using the snapshot will significantly reduce sync time — depending on your system specifications, it may take around 1 to 2 hours to fully catch up to the latest block.
+Snapshot sekarang sudah tersedia untuk diunduh. Menggunakan snapshot bisa memangkas waktu sinkronisasi secara signifikan — tergantung spesifikasi sistemmu, proses ini bisa memakan waktu sekitar 1 sampai 2 jam hingga benar-benar sinkron dengan blok terbaru.
 
-Without the snapshot, syncing from genesis can take 1 to 2 days or more.
+Tanpa snapshot, sinkronisasi dari genesis bisa memakan waktu 1 sampai 2 hari, bahkan lebih.
 </div>
 
-## One-click command
+## Perintah Satu Klik
 :::tabs key:ab
-== Standard config
+== Konfigurasi standar
 
 Snapshot full `db`
 ```bash
 bash <(wget -qO- https://astrostake.xyz/install_snapshot_and_config.sh)
 ```
-Snapshot `flow_db` only.
+Snapshot hanya `flow_db`
 ```bash
 bash <(wget -qO- https://astrostake.xyz/install_snapshot_flowdb_and_config.sh)
 ```
-== Turbo config
+== Konfigurasi turbo
 ```bash
-snapshot turbo under maintenance
+snapshot turbo sedang dalam pemeliharaan
 ```
 :::
 
-## Manual Install Snapshot
+## Instalasi Manual Snapshot
 1. **Install tools**
 ```
 cd && sudo apt-get install wget lz4 aria2 pv -y
 ```
+
 2. **Download snapshot**
 
 :::tabs key:ab
-== Standard config
+== Konfigurasi standar
 **Snapshot full `db`**
 
-Blocks: `3632902`
-Size: `141 GB`
+Blok: `3632902`
+Ukuran: `141 GB`
 ```
 wget https://vault.astrostake.xyz/0g-labs/snapshot_standard_astrostake_2025-03-15.tar.lz4
 ```
+**Snapshot hanya `flow_db` (tanpa `data_db`)**
 
-**Snapshot `flow_db` only. Without `data_db`**
+Blok: `4064648`
+Ukuran: `373 MB`
+```
+wget https://vault.astrostake.xyz/0g-labs/snapshot_flowdb_standard_astrostake_2025-04-20.tar.lz4
+```
 
-Blocks: `3632902`
-Size: `1.86 GB`
+== Konfigurasi turbo
+
+**Kontrak:** `turbo`  
+
+Blok: `-`  
+Ukuran: `-`
 ```
-wget https://vault.astrostake.xyz/0g-labs/snapshot_flowdb_standard_astrostake_2025-03-15.tar.lz4
-```
-== Turbo config
-**Contract:** `turbo`
-Blocks: `-`
-Size: `-`
-```
-snapshot turbo under maintenance
+snapshot turbo sedang dalam pemeliharaan
 ```
 :::
 
@@ -72,21 +75,22 @@ sudo systemctl stop zgs.service
 4. **Extract**
 
 :::tabs key:ab
-== Standard config
-Snapshot full `db` extract
+== Konfigurasi Standar
+Ekstrak full `db`
 ```
 rm -rf $HOME/0g-storage-node/run/db
 lz4 -c -d snapshot_standard_astrostake_2025-03-15.tar.lz4 | pv | tar -x -C $HOME/0g-storage-node/run
 ```
-Snapshot `flow_db` only extract
+Ekstrak hanya `flow_db`
 ```
 rm -rf $HOME/0g-storage-node/run/db/data_db
 rm -rf $HOME/0g-storage-node/run/db/flow_db
-lz4 -c -d snapshot_flowdb_standard_astrostake_2025-03-15.tar.lz4 | pv | tar -x -C $HOME/0g-storage-node/run/db
+lz4 -c -d snapshot_flowdb_standard_astrostake_2025-04-20.tar.lz4 | pv | tar -x -C $HOME/0g-storage-node/run/db
 ```
-== Turbo config
+
+== Konfigurasi turbo
 ```
-snapshot turbo under maintenance
+snapshot turbo sedang dalam pemeliharaan
 ```
 :::
 
@@ -95,19 +99,19 @@ snapshot turbo under maintenance
 sudo systemctl restart zgs && sudo systemctl status zgs
 ```
 
-6. **Remove downloaded file**
+6. **Hapus file snapshot**
 
-After successfully installing, you can delete the downloaded file to free up storage space.
+Setelah instalasi selesai, kamu bisa menghapus file snapshot yang sudah diunduh untuk menghemat ruang penyimpanan.
 
 ```
 rm -rf snapshot_standard_astrostake_2025-03-15.tar.lz4
 ```
 
-## Remove data_db
+## Hapus data_db
 
-:::danger Reset Database State
+:::danger Reset Ulang Database
 
-If you haven't received the miner reward, try deleting the `data_db` folder and restart storage node.
+Kalau kamu belum menerima reward miner, coba hapus folder `data_db` dan restart storage node.
 :::
 
 ```
@@ -121,4 +125,3 @@ rm -rf $HOME/0g-storage-node/run/db/data_db
 ```
 systemctl start zgs
 ```
-

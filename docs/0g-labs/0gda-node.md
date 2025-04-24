@@ -16,8 +16,11 @@ For official documentation, check [here](https://docs.0g.ai/run-a-node/da-node).
 
 ### Stake with AstroStake
 
-Stake with my validator to support this community effort!
-Your delegation helps me stay active in the 0g network and continue building for everyone.
+Not in the Top 200 yet — but we’re building, we’re running, and we’re not stopping.
+
+You can still run a DA Node by staking to my validator.
+
+Every stake moves us closer 🚀
 
 <a class="custom-button" href="https://0g.exploreme.pro/validators/0gvaloper1aax7fz4d904m0ul3e9v3lfq7cdzzw3ka8qk3mr?action=Delegate" target="_blank">
   🚀 Stake to AstroStake

@@ -58,7 +58,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 4. **Download and Install 0G Storage Node**
 ```
-git clone -b v0.8.6 https://github.com/0glabs/0g-storage-node.git
+git clone -b v0.8.7 https://github.com/0glabs/0g-storage-node.git
 ```
 ```
 cd $HOME/0g-storage-node

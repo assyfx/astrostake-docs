@@ -50,10 +50,10 @@ wget https://vault.astrostake.xyz/0g-labs/snapshot_standard_astrostake_2025-03-1
 
 **Snapshot `flow_db` only. Without `data_db`**
 
-Blocks: `3632902`
-Size: `1.86 GB`
+Blocks: `4064648`
+Size: `373 MB`
 ```
-wget https://vault.astrostake.xyz/0g-labs/snapshot_flowdb_standard_astrostake_2025-03-15.tar.lz4
+wget https://vault.astrostake.xyz/0g-labs/snapshot_flowdb_standard_astrostake_2025-04-20.tar.lz4
 ```
 == Turbo config
 **Contract:** `turbo`
@@ -82,7 +82,7 @@ Snapshot `flow_db` only extract
 ```
 rm -rf $HOME/0g-storage-node/run/db/data_db
 rm -rf $HOME/0g-storage-node/run/db/flow_db
-lz4 -c -d snapshot_flowdb_standard_astrostake_2025-03-15.tar.lz4 | pv | tar -x -C $HOME/0g-storage-node/run/db
+lz4 -c -d snapshot_flowdb_standard_astrostake_2025-04-20.tar.lz4 | pv | tar -x -C $HOME/0g-storage-node/run/db
 ```
 == Turbo config
 ```
@@ -95,12 +95,29 @@ snapshot turbo under maintenance
 sudo systemctl restart zgs && sudo systemctl status zgs
 ```
 
-6. **Remove downloaded file**
+6. **Remove downloaded file (Optional)**
 
 After successfully installing, you can delete the downloaded file to free up storage space.
 
 ```
 rm -rf snapshot_standard_astrostake_2025-03-15.tar.lz4
+```
+
+## Useful Commands
+
+**Check Full Logs**
+```
+tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
+```
+
+**Check Blocks and Peers**
+```
+source <(curl -s https://astrostake.xyz/check_block.sh)
+```
+
+**Change RPC**
+```
+bash <(wget -qO- https://astrostake.xyz/change_storage_rpc.sh)
 ```
 
 ## Remove data_db
