@@ -12,7 +12,7 @@ This guide will help you set up a Validator Node for OG Labs. For official docum
 ## Install
 
 **1. Install dependencies**
-```
+```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl git wget htop tmux build-essential jq make lz4 gcc unzip -y
 ```
@@ -37,25 +37,25 @@ source <(curl -s https://itrocket.net/api/testnet/og/autoinstall/)
 :::tabs
 == Create Wallet
 To create a new wallet, use the following command. Don’t forget to save the mnemonic
-```
+```bash
 0gchaind keys add $WALLET
 ```
 == Restore Wallet
 To restore existing wallet, use the following command
-```
+```bash
 0gchaind keys add $WALLET --recover
 ```
 == Restore Wallet (EVM)
 If you use metamask or EVM, use this command to restore your wallet
 
-```
+```bash
 0gchaind keys add $WALLET --eth --recover
 ```
 :::
 
 **Save wallet and validator address**
 
-```
+```bash
 WALLET_ADDRESS=$(0gchaind keys show $WALLET -a)
 VALOPER_ADDRESS=$(0gchaind keys show $WALLET --bech val -a)
 echo "export WALLET_ADDRESS="$WALLET_ADDRESS >> $HOME/.bash_profile
@@ -66,7 +66,7 @@ source $HOME/.bash_profile
 **4. Check block sync**
 
 Script by ITRocket
-```
+```bash
 #!/bin/bash
 rpc_port=$(grep -m 1 -oP '^laddr = "\K[^"]+' "$HOME/.0gchain/config/config.toml" | cut -d ':' -f 3)
 while true; do
@@ -88,21 +88,21 @@ done
 **5. Check node status**
 
 Make sure `"catching_up": false`
-```
+```bash
 0gchaind status 2>&1 | jq
 ```
 
 **6. Create Validator**
 
 Check your balances first. change `wallet_name`
-```
+```bash
 0gchaind q bank balances $(0gchaind keys show "wallet_name" -a)
 ```
 :::info Edit Validator Info
 Edit `moniker` `identity` `website` `details`
 
 `amount` 1000000ua0gi = 1 A0GI
-```
+```bash
 0gchaind tx staking create-validator \
 --amount 1000000ua0gi \
 --from $WALLET \
@@ -124,7 +124,7 @@ Edit `moniker` `identity` `website` `details`
 **Check Validator info**
 
 change `wallet_name`
-```
+```bash
 0gchaind q staking validator $(0gchaind keys show "wallet_name" --bech val -a)
 ```
 
@@ -136,7 +136,7 @@ Do **not** lose this key — it is required to run your validator.
 File location: `/root/.0gchain/config/priv_validator_key.json`
 :::
 
-```
+```bash
 sudo systemctl stop 0gchaind
 sudo systemctl disable 0gchaind
 sudo rm -rf /etc/systemd/system/0gchaind.service

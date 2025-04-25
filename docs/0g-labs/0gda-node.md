@@ -34,7 +34,7 @@ Every stake moves us closer 🚀
 <div class="collapse-content">
 
 **1. Download 0g binary**
-```
+```bash
 cd $HOME
 git clone https://github.com/0glabs/0g-chain.git
 cd 0g-chain
@@ -50,18 +50,18 @@ Change `WalletName` to your real wallet name
 :::tabs
 == Create Wallet
 To create a new wallet, use the following command. Don’t forget to save the mnemonic
-```
+```bash
 0gchaind keys add WalletName
 ```
 == Restore Wallet
 To restore existing wallet, use the following command
-```
+```bash
 0gchaind keys add WalletName --recover
 ```
 == Restore Wallet (EVM)
 If you use metamask or EVM, use this command to restore your wallet
 
-```
+```bash
 0gchaind keys add WalletName --eth --recover
 ```
 :::
@@ -71,7 +71,7 @@ If you use metamask or EVM, use this command to restore your wallet
 change `WalletName` to your real wallet name
 
 and you can change `--node https://evmrpc-testnet.0g.ai` to your favorite RPC
-```
+```bash
 0gchaind tx staking delegate "0gvaloper1aax7fz4d904m0ul3e9v3lfq7cdzzw3ka8qk3mr" 30000000ua0gi --from "WalletName" --chain-id zgtendermint_16600-2 --gas-adjustment 1.5 --gas auto --gas-prices 0.00252ua0gi  --node https://evmrpc-testnet.0g.ai -y
 ```
 </div>
@@ -79,18 +79,18 @@ and you can change `--node https://evmrpc-testnet.0g.ai` to your favorite RPC
 </div>
 
 ## One-Click Command Install
-```
+```bash
 bash <(wget -qO- https://astrostake.xyz/0GDA_Node_One_Click.sh)
 ```
 
 ## Manual Install
 
 1. **Install necessary packages**
-```
+```bash
 sudo apt-get update && sudo apt-get install clang cmake build-essential pkg-config libssl-dev protobuf-compiler llvm llvm-dev
 ```
 2. **Install go**
-```
+```bash
 cd $HOME && \
 ver="1.22.0" && \
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
@@ -102,18 +102,18 @@ source ~/.bash_profile && \
 go version
 ```
 3. **Install rust**
-```
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-```
+```bash
 . "$HOME/.cargo/env"
 ```
 4. **Clone 0G DA Node**
-```
+```bash
 git clone -b v1.1.3 https://github.com/0glabs/0g-da-node.git
 ```
 5. **Build project**
-```
+```bash
 cd $HOME/0g-da-node
 git stash
 git fetch --all --tags
@@ -122,7 +122,7 @@ git submodule update --init
 cargo build --release
 ```
 6. **Add Params**
-```
+```bash
 ./dev_support/download_params.sh
 ```
 7. **Generate BLS private key**
@@ -135,18 +135,18 @@ After generating your BLS Private Key, make sure to **save it securely**.
 - If you ever need to **run your DA Node again** or **migrate to a new VPS**, you **must use the same BLS Private Key** to maintain your node identity.
 - If the key is lost, you’ll need to **generate a new BLS Private Key** and **register a new wallet**, which means starting over with a new node identity.
 :::
-```
+```bash
 cargo run --bin key-gen
 ```
 8. **Edit Config**
-```
+```bash
 nano $HOME/0g-da-node/config.toml
 ```
 :::info Edit Config File
 
 Fill: `socket_address` `signer_bls_private_key` `signet_eth_private_key` `miner_eth_private_key`
 
-```
+```toml
 log_level = "info"
 
 data_path = "./db/"
@@ -180,7 +180,7 @@ enable_das = "true"
 :::
 
 9. **Create service**
-```
+```bash
 sudo tee /etc/systemd/system/0gda.service > /dev/null <<EOF
 [Unit]
 Description=0G-DA Node
@@ -199,7 +199,7 @@ WantedBy=multi-user.target
 EOF
 ```
 10. **Start service**
-```
+```bash
 sudo systemctl daemon-reload && \
 sudo systemctl enable 0gda && \
 sudo systemctl start 0gda && \
@@ -208,11 +208,11 @@ sudo systemctl status 0gda
 ## Useful Commands
 
 **Check Logs**
-```
+```bash
 sudo journalctl -u 0gda -f -o cat
 ```
 **Change RPC**
-```
+```bash
 bash <(wget -qO- https://astrostake.xyz/change_da_rpc.sh)
 ```
 
@@ -226,15 +226,15 @@ Location `$HOME/0g-da-node/config.toml`
 :::
 
 Stop
-```
+```bash
 sudo systemctl stop 0gda
 ```
 
 Delete
-```
+```bash
 sudo systemctl disable 0gda
 sudo rm /etc/systemd/system/0gda.service
 rm -rf $HOME/0g-da-node
 ```
 
-.
+

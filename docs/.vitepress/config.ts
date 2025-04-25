@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 
 export default defineConfig({
+  base: '/',
   title: 'AstroStake Docs',
   description: 'Fast, simple, and reliable node setup with guides and automation tools.',
   appearance: 'dark',
@@ -47,10 +48,12 @@ export default defineConfig({
       lang: 'en',
       themeConfig: {
         nav: [
-          { text: 'Home', link: '/' }
+          { text: 'Home', link: '/' },
+          { text: 'Guides', link: '/guides'}
         ],
         sidebar: {
           '/': [
+            { text: 'Overview Guides', link: '/guides' },
             {
               text: 'Drosera',
               collapsible: true,
@@ -68,10 +71,9 @@ export default defineConfig({
                   text: 'Storage Node',
                   collapsible: true,
                   items: [
-                    { text: 'Install v2', link: '/0g-labs/storage-node' },
-                    { text: 'Snapshot v2', link: '/0g-labs/snapshot' },
-                    { text: 'Install v3', link: '/0g-labs/storage-node-v3-chain' },
-                    { text: 'Update v3', link: '/0g-labs/storage-node-v3-update' }
+                    { text: 'Install (v2)', link: '/0g-labs/storage-node' },
+                    { text: 'Snapshot (v2)', link: '/0g-labs/snapshot' },
+                    { text: 'Install (v3)', link: '/0g-labs/storage-node-v3-chain' }
                   ]
                 },
                 { text: 'DA Node', link: '/0g-labs/0gda-node' },
@@ -100,6 +102,7 @@ export default defineConfig({
         ],
         sidebar: {
           '/id/': [
+            { text: 'Ringkasan Panduan', link: '/id/guides' },
             {
               text: 'Drosera',
               collapsible: true,
@@ -111,14 +114,15 @@ export default defineConfig({
               text: '0G Labs',
               collapsible: true,
               items: [
-                { text: 'Ikhtisar', link: '/id/0g-labs/' },
+                { text: 'Ringkasan', link: '/id/0g-labs/' },
                 { text: 'Validator', link: '/id/0g-labs/validator' },
                 {
                   text: 'Storage Node',
                   collapsible: true,
                   items: [
-                    { text: 'Instalasi', link: '/id/0g-labs/storage-node' },
-                    { text: 'Snapshot', link: '/id/0g-labs/snapshot' }
+                    { text: 'Instalasi (v2)', link: '/id/0g-labs/storage-node' },
+                    { text: 'Snapshot (v2)', link: '/id/0g-labs/snapshot' },
+                    { text: 'Instalasi (v3)', link: '/id/0g-labs/storage-node-v3-chain' }
                   ]
                 },
                 { text: 'Node DA', link: '/id/0g-labs/0gda-node' },

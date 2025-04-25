@@ -24,6 +24,10 @@ html.dark {
   --text-color: var(--text-color-dark);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .highlight {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);

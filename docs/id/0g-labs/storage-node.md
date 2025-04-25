@@ -117,7 +117,7 @@ EOF
 sudo systemctl daemon-reload && sudo systemctl enable zgs && sudo systemctl start zgs
 ```
 
-## Opsional: [Install Snapshot](https://docs.astrostake.xyz/0g-labs/snapshot)
+## Opsional: [Install Snapshot](https://docs.astrostake.xyz/id/0g-labs/snapshot)
 
 ## Perintah Berguna
 

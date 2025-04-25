@@ -1,18 +1,48 @@
-# AstroStake
-
-**Your Gateway to Simplified Node Management**
-
-Fast, simple, and reliable node setup with guides, snapshots, and automation tools.
-
-**Support by [Maouam's Node Lab](https://maouam.nodelab.my.id/)**
-
+---
+layout: home
+title: AstroStake Docs
+hero:
+  name: AstroStake
+  text: Fast & Reliable Node Infrastructure
+  tagline: Tools, automation, snapshots, and guides — all in one place.
+  image:
+    src: /logo.svg
+    alt: AstroStake Logo
+  actions:
+    - theme: brand
+      text: Get Started
+      link: '#projects'
+    - theme: alt
+      text: Guides
+      link: /guides/
+features:
+  - icon: ⚡️
+    title: Fast Setup
+    details: One-click node install and snapshot for blazing fast onboarding.
+  - icon: 🛠️
+    title: Custom Scripts
+    details: Prebuilt and tested bash scripts to automate your infra.
+  - icon: 🧩
+    title: Modular
+    details: Easily pick and choose tools and guides based on your network.
 ---
 
-AstroStake is a node runner and validator committed to securing blockchain networks while supporting the community.
+## About AstroStake Docs
 
-We provide technical assistance, snapshots, one-click commands, and troubleshooting solutions to simplify node management.
+AstroStake Docs is your resource for setting up nodes, managing validators, and optimizing blockchain infrastructure — all in one place.
 
-## Project Service List
+From one-click installs to full validator support, find step-by-step guides, snapshots, and automation tools tailored for the community.
+
+Support by [Maouam's Node Lab](https://maouam.nodelab.my.id/)
+
+
+<br><br>
+
+<!-- You can add additional markdown content here if needed -->
+
+## Explore Our Node Services {#projects}
+
+Choose a network below to access node setup guides, staking portals, RPC status, and other tools — all curated by AstroStake.
 
 <div class="project-cards">
   <div class="project-item">
@@ -58,4 +88,3 @@ We provide technical assistance, snapshots, one-click commands, and troubleshoot
     </div>
   </div>
 </div>
-

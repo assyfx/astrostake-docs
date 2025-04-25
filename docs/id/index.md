@@ -1,18 +1,45 @@
-# AstroStake
-
-**Gerbang Anda Menuju Pengelolaan Node yang Lebih Sederhana**
-
-Penyiapan node yang cepat, sederhana, dan andal dengan panduan, snapshot, dan alat otomatisasi.
-
-**Didukung oleh [Maouam's Node Lab](https://maouam.nodelab.my.id/)**
-
+---
+layout: home
+title: Dokumentasi AstroStake
+hero:
+  name: AstroStake
+  text: Infrastruktur Node yang Cepat & Andal
+  tagline: Panduan, otomatisasi, snapshot, dan tools — semua tersedia di satu tempat.
+  image:
+    src: /logo.svg
+    alt: Logo AstroStake
+  actions:
+    - theme: brand
+      text: Mulai Sekarang
+      link: '#projects'
+    - theme: alt
+      text: Panduan
+      link: /id/guides/
+features:
+  - icon: ⚡️
+    title: Instalasi Cepat
+    details: Instalasi node dan snapshot satu klik untuk onboarding yang super cepat.
+  - icon: 🛠️
+    title: Skrip Kustom
+    details: Skrip bash siap pakai dan telah diuji untuk mengotomatisasi infrastruktur Anda.
+  - icon: 🧩
+    title: Modular
+    details: Bebas memilih panduan dan alat berdasarkan jaringan yang Anda gunakan.
 ---
 
-AstroStake adalah penyedia layanan node runner dan validator yang berkomitmen untuk menjaga keamanan jaringan blockchain sambil mendukung komunitas.
+## Tentang Dokumentasi AstroStake
 
-Kami menyediakan bantuan teknis, snapshot, perintah sekali klik, dan solusi troubleshooting untuk memudahkan pengelolaan node.
+Dokumentasi AstroStake adalah pusat informasi untuk menyiapkan node, mengelola validator, dan mengoptimalkan infrastruktur blockchain — semua tersedia dalam satu tempat.
 
-## Daftar Layanan Proyek
+Mulai dari instalasi satu klik hingga dukungan validator penuh, temukan panduan langkah demi langkah, snapshot, dan alat otomatisasi yang disesuaikan untuk komunitas.
+
+Didukung oleh [Maouam's Node Lab](https://maouam.nodelab.my.id/)
+
+<br><br>
+
+## Jelajahi Layanan Node Kami {#projects}
+
+Pilih jaringan di bawah untuk mengakses panduan instalasi node, staking, status RPC, dan alat lainnya — semuanya disiapkan oleh AstroStake.
 
 <div class="project-cards">
   <div class="project-item">

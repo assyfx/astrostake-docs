@@ -9,12 +9,12 @@
 ## Install
 
 1. **Install necessary packages**
-```
+```bash
 sudo apt-get update
 sudo apt-get install cmake
 ```
 2. **Install go**
-```
+```bash
 cd $HOME && \
 ver="1.22.0" && \
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
@@ -26,26 +26,26 @@ source ~/.bash_profile && \
 go version
 ```
 3. **Download and run Docker**
-```
+```bash
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 ```
-```
+```bash
 sudo usermod -aG docker $USER && newgrp docker
 ```
-```
+```bash
 sudo systemctl enable docker.service && sudo systemctl enable containerd.service
 ```
 4. **Clone 0G DA Client**
-```
+```bash
 git clone https://github.com/0glabs/0g-da-client.git
 ```
 5. **Build docker image**
-```
+```bash
 cd 0g-da-client
 docker build -t da-client -f combined.Dockerfile .
 ```
 6. Create environment file
-```
+```bash
 nano envfile.env
 ```
 :::info Edit env file
@@ -53,7 +53,7 @@ nano envfile.env
 Please check and enter 
 `COMBINED_SERVER_PRIVATE_KEY` `BATCHER_ENCODER_ADDRESS`
 
-```
+```dotenv
 # envfile.env
 COMBINED_SERVER_CHAIN_RPC=https://evmrpc-testnet.0g.ai
 COMBINED_SERVER_PRIVATE_KEY=YOUR_PRIVATE_KEY
@@ -86,15 +86,15 @@ BATCHER_CHAIN_WRITE_TIMEOUT=13s
 :::
 
 7. **Run docker container**
-```
+```bash
 docker run -d --env-file envfile.env --name da-client -v ./run:/runtime -p 51001:51001 da-client
 ```
 8. **Check logs**
-```
+```bash
 docker logs -f da-client
 ```
 
 ## Stop node
-```
+```bash
 docker stop da-client
 ```

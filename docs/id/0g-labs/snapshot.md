@@ -107,6 +107,23 @@ Setelah instalasi selesai, kamu bisa menghapus file snapshot yang sudah diunduh 
 rm -rf snapshot_standard_astrostake_2025-03-15.tar.lz4
 ```
 
+## Perintah Berguna
+
+**Lihat log lengkap**
+```
+tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
+```
+
+**Cek blok dan peers**
+```
+source <(curl -s https://astrostake.xyz/check_block.sh)
+```
+
+**Ganti RPC**
+```
+bash <(wget -qO- https://astrostake.xyz/change_storage_rpc.sh)
+```
+
 ## Hapus data_db
 
 :::danger Reset Ulang Database
