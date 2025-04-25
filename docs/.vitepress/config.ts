@@ -56,20 +56,20 @@ export default defineConfig({
             { text: 'Overview Guides', link: '/guides' },
             {
               text: 'Drosera',
-              collapsible: true,
+              collapsed: true,
               items: [
                 { text: 'Installation', link: '/drosera/' }
               ]
             },
             {
               text: '0G Labs',
-              collapsible: true,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/0g-labs/' },
                 { text: 'Validator', link: '/0g-labs/validator' },
                 {
                   text: 'Storage Node',
-                  collapsible: true,
+                  collapsed: true,
                   items: [
                     { text: 'Install (v2)', link: '/0g-labs/storage-node' },
                     { text: 'Snapshot (v2)', link: '/0g-labs/snapshot' },
@@ -82,7 +82,7 @@ export default defineConfig({
             },
             {
               text: 'VANA',
-              collapsible: true,
+              collapsed: true,
               items: [
                 { text: 'DLP Validator', link: '/vana/' }
               ]
@@ -105,20 +105,20 @@ export default defineConfig({
             { text: 'Ringkasan Panduan', link: '/id/guides' },
             {
               text: 'Drosera',
-              collapsible: true,
+              collapsed: true,
               items: [
                 { text: 'Instalasi', link: '/id/drosera/' }
               ]
             },
             {
               text: '0G Labs',
-              collapsible: true,
+              collapsed: true,
               items: [
                 { text: 'Ringkasan', link: '/id/0g-labs/' },
                 { text: 'Validator', link: '/id/0g-labs/validator' },
                 {
                   text: 'Storage Node',
-                  collapsible: true,
+                  collapsed: true,
                   items: [
                     { text: 'Instalasi (v2)', link: '/id/0g-labs/storage-node' },
                     { text: 'Snapshot (v2)', link: '/id/0g-labs/snapshot' },
@@ -131,7 +131,7 @@ export default defineConfig({
             },
             {
               text: 'VANA',
-              collapsible: true,
+              collapsed: true,
               items: [
                 { text: 'DLP Validator', link: '/id/vana/' }
               ]
