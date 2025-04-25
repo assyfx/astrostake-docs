@@ -99,8 +99,6 @@ EOF
 sudo systemctl daemon-reload && sudo systemctl enable zgs && sudo systemctl start zgs
 ```
 
-## Optional: [Install Snapshot](https://docs.astrostake.xyz/0g-labs/snapshot)
-
 ## Useful Commands
 **Check Full Logs**
 ```
