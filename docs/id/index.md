@@ -14,44 +14,47 @@ Kami menyediakan bantuan teknis, snapshot, perintah sekali klik, dan solusi trou
 
 ## Daftar Layanan Proyek
 
-<div class="stake-buttons">
-  <a href="/id/drosera/" class="stake-button">
-    <div class="icon-wrapper">
-      <img src="/logos/drosera.png" alt="Drosera Logo" />
+<div class="project-cards">
+  <div class="project-item">
+    <div class="project-header">
+      <img src="/logos/0g.png" alt="OG Labs" />
+      <div class="project-title">OG Labs</div>
     </div>
-    <span>Drosera</span>
-  </a>
-  <a href="/id/0g-labs/" class="stake-button">
-    <div class="icon-wrapper">
-      <img src="/logos/0g.png" alt="OG Labs Logo" />
+    <div class="project-buttons">
+      <a href="https://astrostake.xyz/0g-faucet/" target="_blank" class="action-btn">Faucet</a>
+      <a href="https://0g.exploreme.pro/validators/0gvaloper1aax7fz4d904m0ul3e9v3lfq7cdzzw3ka8qk3mr?action=Delegate" target="_blank" class="action-btn">Stake</a>
+      <a href="https://astrostake.xyz/0g-status" target="_blank" class="action-btn">RPC</a>
+      <a href="/0g-labs/" class="action-btn">Guide</a>
     </div>
-    <span>OG Labs</span>
-  </a>
-  <a href="/id/vana/dlp" class="stake-button">
-    <div class="icon-wrapper">
-      <img src="/logos/vana.png" alt="VANA Logo" />
-    </div>
-    <span>VANA</span>
-  </a>
-</div>
+  </div>
 
-## Stake bersama AstroStake
-
-Dukung validator kami dan bantu amankan jaringan dengan melakukan staking bersama kami di proyek berikut:
-
-<div class="stake-buttons">
-  <a href="https://staker.dill.xyz/management/detail?address=0x5F15AcdeD2FF4E8d40820E3a1d2fb56106E487cf"
-     target="_blank" class="stake-button">
-    <div class="icon-wrapper">
-      <img src="/logos/dill.png" alt="Logo Dill" />
+  <div class="project-item">
+    <div class="project-header">
+      <img src="/logos/drosera.png" alt="Drosera" />
+      <div class="project-title">Drosera</div>
     </div>
-    <span>Stake di Dill</span>
-  </a>
-  <a href="https://0g.exploreme.pro/validators/0gvaloper1aax7fz4d904m0ul3e9v3lfq7cdzzw3ka8qk3mr?action=Delegate"
-     target="_blank" class="stake-button">
-    <div class="icon-wrapper">
-      <img src="/logos/0g.png" alt="Logo 0G" />
+    <div class="project-buttons">
+      <a href="/drosera/" class="action-btn">Guide</a>
     </div>
-    <span>Stake di 0G</span>
-  </a>
+  </div>
+
+  <div class="project-item">
+    <div class="project-header">
+      <img src="/logos/dill.png" alt="Dill" />
+      <div class="project-title">Dill</div>
+    </div>
+    <div class="project-buttons">
+      <a href="https://staker.dill.xyz/management/detail?address=0x5F15AcdeD2FF4E8d40820E3a1d2fb56106E487cf" target="_blank" class="action-btn">Stake</a>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="project-header">
+      <img src="/logos/vana.png" alt="VANA" />
+      <div class="project-title">VANA</div>
+    </div>
+    <div class="project-buttons">
+      <a href="/vana/dlp" class="action-btn">Guide</a>
+    </div>
+  </div>
 </div>
