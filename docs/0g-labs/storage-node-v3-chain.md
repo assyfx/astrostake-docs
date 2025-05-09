@@ -1,3 +1,8 @@
+---
+title: Storage Node Setup Guide (V3 Galileo)
+description: Step-by-step guide for setting up 0G Labs storage node using AstroStake tools.
+---
+
 # Storage Node Setup Guide (V3 Galileo)
 
 This guide will help you set up a Storage Node for OG Labs.
@@ -60,11 +65,13 @@ rm -rf $HOME/0g-storage-node/run/config.toml
 curl -o $HOME/0g-storage-node/run/config.toml https://vault.astrostake.xyz/0g-labs/config-v3.toml
 ```
 
+:::info
 check `miner_key` and input your private key
 
 ```bash
 nano $HOME/0g-storage-node/run/config.toml
 ```
+:::
 
 6. **Delete and Create New Service**
 ```bash
@@ -118,7 +125,7 @@ bash <(wget -qO- https://astrostake.xyz/0g_storage_node_v3_chain.sh)
 1. **Install necessary packages**
 ```bash
 sudo apt-get update
-sudo apt-get install clang cmake build-essential openssl pkg-config libssl-dev jq
+sudo apt-get install clang cmake build-essential openssl pkg-config libssl-dev jq git bc
 ```
 2. **Install go**
 ```bash
@@ -158,10 +165,13 @@ rm -rf $HOME/0g-storage-node/run/config.toml
 curl -o $HOME/0g-storage-node/run/config.toml https://vault.astrostake.xyz/0g-labs/config-v3.toml
 ```
 
+:::info
 check `miner_key` and input your private key
 ```bash
 nano $HOME/0g-storage-node/run/config.toml
 ```
+:::
+
 6. **Create service**
 ```bash
 sudo tee /etc/systemd/system/zgs.service > /dev/null <<EOF
@@ -185,6 +195,13 @@ EOF
 ```bash
 sudo systemctl daemon-reload && sudo systemctl enable zgs && sudo systemctl start zgs
 ```
+## Optional: [Install Snapshot](https://docs.astrostake.xyz/0g-labs/snapshot-v3)
+
+## Troubleshooting
+
+:::info
+If you face any errors during node installation, please refer to the [Troubleshooting Guide](/0g-labs/troubleshooting-storage-node).
+:::
 
 ## Useful Commands
 **Check Full Logs**

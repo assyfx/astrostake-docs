@@ -66,14 +66,23 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'Overview', link: '/0g-labs/' },
-                { text: 'Validator', link: '/0g-labs/validator' },
+                {
+                  text: 'Validator',
+                  collapsed: true,
+                  items: [
+                    { text: 'Validator Newton', link: '/0g-labs/validator' },
+                    { text: 'Validator Galileo', link: '/0g-labs/validator-galileo' }
+                  ]
+                },
                 {
                   text: 'Storage Node',
                   collapsed: true,
                   items: [
+                    { text: 'Install (v3)', link: '/0g-labs/storage-node-v3-chain' },
+                    { text: 'Snapshot (v3)', link: '/0g-labs/snapshot-v3.md' },
                     { text: 'Install (v2)', link: '/0g-labs/storage-node' },
                     { text: 'Snapshot (v2)', link: '/0g-labs/snapshot' },
-                    { text: 'Install (v3)', link: '/0g-labs/storage-node-v3-chain' }
+                    { text: 'Troubleshooting', link: '/0g-labs/troubleshooting-storage-node' }
                   ]
                 },
                 { text: 'DA Node', link: '/0g-labs/0gda-node' },

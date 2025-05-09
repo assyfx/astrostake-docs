@@ -10,8 +10,10 @@ From one-click installs to validator creation, this section contains all AstroSt
 
 **V3 Galileo**
 
+- [Validator Galileo + Snapshot](/0g-labs/validator-galileo)
 - [Storage Node Setup (v3)](/0g-labs/storage-node-v3-chain)
-
+- [Snapshot Storage Node](/0g-labs/snapshot-v3)
+- [Storage Node Troubleshooting Guide](/0g-labs/troubleshooting-storage-node)
 
 **V2 Newton**
 

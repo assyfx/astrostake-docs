@@ -1,3 +1,8 @@
+---
+title: Panduan Instalasi Storage Node (V3 Galileo)
+description: Panduan lengkap instalasi dan migrasi storage node 0G Labs menggunakan AstroStake.
+---
+
 # Panduan Setup Storage Node (V3 Galileo)
 
 Panduan ini akan membantu Anda menyiapkan Storage Node untuk OG Labs.
@@ -58,11 +63,12 @@ cargo build --release
 rm -rf $HOME/0g-storage-node/run/config.toml
 curl -o $HOME/0g-storage-node/run/config.toml https://vault.astrostake.xyz/0g-labs/config-v3.toml
 ```
-
+:::info
 Periksa `miner_key` dan masukkan private key Anda:
 ```bash
 nano $HOME/0g-storage-node/run/config.toml
 ```
+:::
 
 6. **Hapus dan Buat Ulang Service**
 ```bash
@@ -122,7 +128,7 @@ bash <(wget -qO- https://astrostake.xyz/0g_storage_node_v3_chain.sh)
 1. **Instalasi Paket yang Diperlukan**
 ```bash
 sudo apt-get update
-sudo apt-get install clang cmake build-essential openssl pkg-config libssl-dev jq
+sudo apt-get install clang cmake build-essential openssl pkg-config libssl-dev jq git bc
 ```
 
 2. **Instal Go**
@@ -164,11 +170,12 @@ cargo build --release
 rm -rf $HOME/0g-storage-node/run/config.toml
 curl -o $HOME/0g-storage-node/run/config.toml https://vault.astrostake.xyz/0g-labs/config-v3.toml
 ```
-
+:::info
 Periksa `miner_key` dan input private key Anda:
 ```bash
 nano $HOME/0g-storage-node/run/config.toml
 ```
+:::
 
 6. **Buat Service**
 ```bash

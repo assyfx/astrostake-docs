@@ -1,7 +1,7 @@
 import DefaultTheme from 'vitepress/theme'
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 import './custom.css'
-import './custom.js' // ⬅️ pastikan ini diimpor
+import './custom.js'
 
 export default {
   ...DefaultTheme,

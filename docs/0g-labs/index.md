@@ -17,7 +17,7 @@ This guide provides step-by-step instructions for:
 - **Validator Registration:** Instructions to register as an active validator on the OG Labs network.
 - **Monitoring & Maintenance:** Useful commands to monitor validator status and ensure optimal performance.
 
-For a comprehensive walkthrough, visit the [Validator Setup Guide](./validator).
+For a comprehensive walkthrough, visit the [Validator Setup Guide](./validator-galileo).
 
 ---
 
@@ -43,7 +43,7 @@ Snapshots provide pre-synced data to help new Storage Nodes sync quickly without
 - **Snapshot Status:** Displays current snapshot availability and snapshot block.
 - **Installation:** One-click commands or manual snapshot restore available.
 
-Detailed instructions are available in the [Snapshot Guide](./snapshot).
+Detailed instructions are available in the [Snapshot Guide](./snapshot-v3).
 
 ---
 

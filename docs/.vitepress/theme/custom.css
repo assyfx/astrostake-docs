@@ -129,7 +129,7 @@ html {
   border-radius: 8px;
   overflow: hidden;
   margin: 1.5em 0;
-  background-color: var(--vp-c-bg-soft);
+  background-color: transparent;
   transition: background-color 0.3s ease;
 }
 
