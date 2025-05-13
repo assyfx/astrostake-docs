@@ -100,12 +100,12 @@ tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
 
 **Check Blocks and Peers**
 ```bash
-source <(curl -s https://astrostake.xyz/check_block.sh)
+source <(curl -s https://vault.astrostake.xyz/0g-labs/check_block.sh)
 ```
 
 **Change RPC**
 ```bash
-bash <(wget -qO- https://astrostake.xyz/change_storage_rpc.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/change_storage_rpc.sh)
 ```
 
 ## Remove data_db

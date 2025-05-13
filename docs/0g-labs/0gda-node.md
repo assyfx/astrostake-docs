@@ -80,7 +80,7 @@ and you can change `--node https://evmrpc-testnet.0g.ai` to your favorite RPC
 
 ## One-Click Command Install
 ```bash
-bash <(wget -qO- https://astrostake.xyz/0GDA_Node_One_Click.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/0GDA_Node_One_Click.sh)
 ```
 
 ## Manual Install

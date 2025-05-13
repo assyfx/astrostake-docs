@@ -27,7 +27,7 @@ Version: `v1.0.0`
 
 ## One-Click Command
 ```bash
-bash <(wget -qO- https://astrostake.xyz/upgrade_storage_node_v3.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/upgrade_storage_node_v3.sh)
 ```
 
 ## Manual Install
@@ -111,13 +111,13 @@ This command only updates your node version. If you're moving from v2 to v3, mak
 
 version: `v1.0.0`
 ```bash
-bash <(wget -qO- https://astrostake.xyz/storage_node_update_v3.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/storage_node_update_v3.sh)
 ```
 
 ## One Click Command Install
 
 ```bash
-bash <(wget -qO- https://astrostake.xyz/0g_storage_node_v3_chain.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/0g_storage_node_v3_chain.sh)
 ```
 
 ## Manual Install
@@ -211,12 +211,12 @@ tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
 
 **Check Blocks and Peers**
 ```bash
-source <(curl -s https://astrostake.xyz/check_block.sh)
+source <(curl -s https://vault.astrostake.xyz/0g-labs/check_block.sh)
 ```
 
 **Change RPC**
 ```bash
-bash <(wget -qO- https://astrostake.xyz/change_storage_rpc.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/change_storage_rpc.sh)
 ```
 
 ## Stop and delete node

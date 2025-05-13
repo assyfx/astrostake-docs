@@ -19,11 +19,11 @@ Without the snapshot, syncing from genesis can take 1 to 2 days or more.
 
 Snapshot full `db`
 ```bash
-bash <(wget -qO- https://astrostake.xyz/install_snapshot_and_config.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/install_snapshot_and_config.sh)
 ```
 Snapshot `flow_db` only.
 ```bash
-bash <(wget -qO- https://astrostake.xyz/install_snapshot_flowdb_and_config.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/install_snapshot_flowdb_and_config.sh)
 ```
 == Turbo config
 ```bash
@@ -112,12 +112,12 @@ tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
 
 **Check Blocks and Peers**
 ```
-source <(curl -s https://astrostake.xyz/check_block.sh)
+source <(curl -s https://vault.astrostake.xyz/0g-labs/check_block.sh)
 ```
 
 **Change RPC**
 ```
-bash <(wget -qO- https://astrostake.xyz/change_storage_rpc.sh)
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/change_storage_rpc.sh)
 ```
 
 ## Remove data_db
