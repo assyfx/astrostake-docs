@@ -56,6 +56,7 @@ mv ~/.0gchaind/0g-home/geth-home/geth ~/.0gchaind/0g-home/geth-home/geth.bak.$(d
 rm -rf ~/.0gchaind/0g-home/0gchaind-home/data
 rm -rf ~/.0gchaind/0g-home/geth-home/geth
 ```
+> 🧭 Note: If you're using `~/galileo/0g-home/` instead of `~/.0gchaind/0g-home/`, adjust the paths accordingly.
 
 4. **Extract Snapshot**
 ```bash
@@ -66,7 +67,7 @@ pv geth_snapshot_20250501-193735.tar.gz | tar xz -C ~/.0gchaind/0g-home/
 
 5. **Start Node**
 ```bash
-sudo systemctl start geth # Or: sudo systemctl stop 0ggeth
+sudo systemctl start geth # Or: sudo systemctl start 0ggeth
 sudo systemctl start 0gchaind
 ```
 

@@ -55,6 +55,13 @@ export default defineConfig({
           '/': [
             { text: 'Overview Guides', link: '/guides' },
             {
+              text: 'Aztec',
+              collapsed: true,
+              items: [
+                { text: 'Sequencer Node', link: '/aztec/' }
+              ]
+            },
+            {
               text: 'Drosera',
               collapsed: true,
               items: [

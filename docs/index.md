@@ -45,6 +45,17 @@ Support by [Maouam's Node Lab](https://maouam.nodelab.my.id/)
 Choose a network below to access node setup guides, staking portals, RPC status, and other tools — all curated by AstroStake.
 
 <div class="project-cards">
+
+  <div class="project-item">
+    <div class="project-header">
+      <img src="/logos/aztec.png" alt="Aztec" />
+      <div class="project-title">Aztec</div>
+    </div>
+    <div class="project-buttons">
+      <a href="/aztec/" class="action-btn">Guide</a>
+    </div>
+  </div>
+
   <div class="project-item">
     <div class="project-header">
       <img src="/logos/0g.png" alt="OG Labs" />
