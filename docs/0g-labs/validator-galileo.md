@@ -5,8 +5,15 @@ This guide will help you install a 0G Galileo Validator node using a combination
 ---
 
 ## Auto Install
+
+Version: `v1.1.1`
 ```bash
 bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/validator_install.sh)
+```
+
+Update from `v1.1.0` to `v1.1.1`
+```bash
+bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/validator_update.sh)
 ```
 
 ## Useful Commands
