@@ -23,19 +23,19 @@ source <(curl -s https://vault.astrostake.xyz/0g-labs/check_block_validator.sh)
 
 ## Snapshot
 
-block: `1090929`
+block: `215020`
 
 size:
-- `0gchaind_snapshot_20250501-193735.tar.gz` – for Cosmos state `4.54 GB`
-- `geth_snapshot_20250501-193735.tar.gz` – for EVM state `5.12 GB`
+- `0gchaind_snapshot_20250514-0910551.tar.gz` – for Cosmos state `660 MB`
+- `geth_snapshot_20250514-0910551.tar.gz` – for EVM state `204 MB`
 
 1. **Download**
 ```bash
 mkdir -p ~/snapshot
 cd ~/snapshot
 
-wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/0gchaind_snapshot_20250501-193735.tar.gz
-wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/geth_snapshot_20250501-193735.tar.gz
+wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/0gchaind_snapshot_20250514-0910551.tar.gz
+wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/geth_snapshot_20250514-0910551.tar.gz
 ```
 
 2. **stop node**
@@ -60,8 +60,8 @@ rm -rf ~/.0gchaind/0g-home/geth-home/geth
 
 4. **Extract Snapshot**
 ```bash
-pv 0gchaind_snapshot_20250501-193735.tar.gz | tar xz -C ~/.0gchaind/0g-home/
-pv geth_snapshot_20250501-193735.tar.gz | tar xz -C ~/.0gchaind/0g-home/
+pv 0gchaind_snapshot_20250514-0910551.tar.gz | tar xz -C ~/.0gchaind/0g-home/
+pv geth_snapshot_20250514-0910551.tar.gz | tar xz -C ~/.0gchaind/0g-home/
 ```
 > 🧭 Note: If you're using `~/galileo/0g-home/` instead of `~/.0gchaind/0g-home/`, adjust the paths accordingly.
 
