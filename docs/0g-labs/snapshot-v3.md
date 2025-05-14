@@ -6,7 +6,7 @@ While we provide snapshots for those who need them, they are not the primary met
 
 ### Snapshot Status
 
-**Status:** 🟢 Available
+**Status:** 🔴 Not available
 
 The snapshot is now available for download. Using the snapshot will significantly reduce sync time compared to syncing from genesis.
 
