@@ -49,7 +49,8 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Guides', link: '/guides'}
+          { text: 'Guides', link: '/guides'},
+          { text: "AstroStake", link: "https://www.astrostake.xyz", target: "_blank" }
         ],
         sidebar: {
           '/': [
