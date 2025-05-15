@@ -4,6 +4,19 @@ This guide will help you install a 0G Galileo Validator node using a combination
 
 ---
 
+:::info
+At the moment, you can run the node as an RPC (Remote Procedure Call) to support the network and stay synced with the blockchain.
+
+However, the command to create a validator is not yet available. This guide will be updated as soon as the official instructions for validator setup are released by the core team.
+
+In the meantime, you can:
+
+- Keep your node running and fully synced
+- Monitor announcements from the official project channels
+
+> Stay tuned — we’ll update this documentation as soon as validator functionality is live.
+:::
+
 ## Auto Install
 
 Version: `v1.1.1`
