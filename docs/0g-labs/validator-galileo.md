@@ -37,7 +37,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install curl git wget htop tmux build-essential jq make lz4 gcc unzip -y
 ```
 
-2. ** Install Go**
+2. **Install Go**
 ```bash
 cd $HOME && \
 ver="1.22.0" && \
@@ -50,7 +50,7 @@ source ~/.bash_profile && \
 go version
 ```
 
-3. ** Download and Extract Galileo**
+3. **Download and Extract Galileo**
 ```bash
 cd $HOME
 wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.1/galileo-v1.1.1.tar.gz
