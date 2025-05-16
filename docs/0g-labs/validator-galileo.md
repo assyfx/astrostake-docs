@@ -59,6 +59,12 @@ rm galileo-v1.1.1.tar.gz
 cd galileo
 chmod +x ./bin/geth ./bin/0gchaind
 ```
+Move binaries to `/usr/local/bin` for global access
+```bash
+sudo mv ./bin/geth /usr/local/bin/geth
+sudo mv ./bin/0gchaind /usr/local/bin/0gchaind
+sudo chmod +x /usr/local/bin/geth /usr/local/bin/0gchaind
+```
 
 4. **Initialize Geth and 0GChainD**
 ```bash
@@ -95,7 +101,7 @@ After=network.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/galileo
-ExecStart=$HOME/galileo/bin/0gchaind start --rpc.laddr tcp://0.0.0.0:26657 --chain-spec devnet --kzg.trusted-setup-path=$HOME/galileo/kzg-trusted-setup.json --engine.jwt-secret-path=$HOME/galileo/jwt-secret.hex --kzg.implementation=crate-crypto/go-kzg-4844 --block-store-service.enabled --node-api.enabled --node-api.logging --node-api.address 0.0.0.0:3500 --pruning=nothing --home=$HOME/.0gchaind/0g-home/0gchaind-home
+ExecStart=/usr/local/bin/0gchaind start --rpc.laddr tcp://0.0.0.0:26657 --chain-spec devnet --kzg.trusted-setup-path=$HOME/galileo/kzg-trusted-setup.json --engine.jwt-secret-path=$HOME/galileo/jwt-secret.hex --kzg.implementation=crate-crypto/go-kzg-4844 --block-store-service.enabled --node-api.enabled --node-api.logging --node-api.address 0.0.0.0:3500 --pruning=nothing --home=$HOME/.0gchaind/0g-home/0gchaind-home
 Restart=always
 RestartSec=5
 LimitNOFILE=4096
@@ -115,7 +121,7 @@ After=network.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/galileo
-ExecStart=$HOME/galileo/bin/geth --config $HOME/galileo/geth-config.toml --nat extip=$(hostname -I | awk '{print $1}') --datadir $HOME/.0gchaind/0g-home/geth-home --networkid 16601
+ExecStart=/usr/local/bin/geth --config $HOME/galileo/geth-config.toml --nat extip=$(hostname -I | awk '{print $1}') --datadir $HOME/.0gchaind/0g-home/geth-home --networkid 16601
 Restart=always
 RestartSec=5
 LimitNOFILE=4096
