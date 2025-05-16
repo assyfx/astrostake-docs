@@ -67,9 +67,11 @@ sudo chmod +x /usr/local/bin/geth /usr/local/bin/0gchaind
 ```
 
 4. **Initialize Geth and 0GChainD**
+
+Change `<YOUR_MONIKER>`
 ```bash
-./bin/geth init --datadir $HOME/galileo/0g-home/geth-home ./genesis.json
-./bin/0gchaind init "<YOUR_MONIKER>" --home $HOME/galileo/tmp
+/usr/local/bin/geth init --datadir $HOME/galileo/0g-home/geth-home ./genesis.json
+/usr/local/bin/0gchaind init "<YOUR_MONIKER>" --home $HOME/galileo/tmp
 ```
 
 5. **Configure Node**
