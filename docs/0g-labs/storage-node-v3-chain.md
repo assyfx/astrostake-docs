@@ -105,6 +105,44 @@ sudo systemctl daemon-reload && sudo systemctl enable zgs && sudo systemctl star
 </details>
 </div>
 
+## Update to New Contract
+
+<div class="custom-collapse">
+<details>
+  <summary>Click here to see how to update to the new contract.</summary>
+
+<div class="collapse-content">
+
+Stop zgs service
+```bash
+systemctl stop zgs
+```
+
+Delete old `db`
+```bash
+rm -rf $HOME/0g-storage-node/run/db
+```
+
+Download new config
+```bash
+rm -rf $HOME/0g-storage-node/run/config.toml
+curl -o $HOME/0g-storage-node/run/config.toml https://vault.astrostake.xyz/0g-labs/config-v3.toml
+```
+:::info
+check `miner_key` and input your private key
+```bash
+nano $HOME/0g-storage-node/run/config.toml
+```
+
+Restart zgs service
+```bash
+systemctl restart zgs
+```
+
+</div>
+</details>
+</div>
+
 ## One-Click Command Update
 
 This command only updates your node version. If you're moving from v2 to v3, make sure to follow the migration guide instead.
