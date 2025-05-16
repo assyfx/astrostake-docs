@@ -122,7 +122,8 @@ Delete old `db`
 ```bash
 rm -rf $HOME/0g-storage-node/run/db
 ```
-
+:::tabs
+== Download new config
 Download new config
 ```bash
 rm -rf $HOME/0g-storage-node/run/config.toml
@@ -132,6 +133,27 @@ curl -o $HOME/0g-storage-node/run/config.toml https://vault.astrostake.xyz/0g-la
 check `miner_key` and input your private key
 ```bash
 nano $HOME/0g-storage-node/run/config.toml
+```
+:::
+== Edit old config
+Edit `config.toml`
+```bash
+nano $HOME/0g-storage-node/run/config.toml
+```
+Edit `log_contract_addres`, `log_sync_start_block_number`, `mine_contract_address`, `reward_contract_address`
+```toml
+# Flow contract address to sync event logs.
+log_contract_address = "0xbD75117F80b4E22698D0Cd7612d92BDb8eaff628"
+
+# Block number to sync event logs from blockchain. Generally, this is
+# the block number when flow contract deployed.
+log_sync_start_block_number = 326165
+
+# Mine contract address for PoRA.
+mine_contract_address = "0x3A0d1d67497Ad770d6f72e7f4B8F0BAbaa2A649C"
+
+# Reward contract address for incentive.
+reward_contract_address = "0xd3D4D91125D76112AE256327410Dd0414Ee08Cb4"
 ```
 :::
 
