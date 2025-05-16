@@ -29,6 +29,116 @@ Update from `v1.1.0` to `v1.1.1`
 bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/validator_update.sh)
 ```
 
+## Manual Install
+
+1. **Install Dependencies**
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install curl git wget htop tmux build-essential jq make lz4 gcc unzip -y
+```
+
+2. ** Install Go**
+```bash
+cd $HOME && \
+ver="1.22.0" && \
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
+sudo rm -rf /usr/local/go && \
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
+rm "go$ver.linux-amd64.tar.gz" && \
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile && \
+source ~/.bash_profile && \
+go version
+```
+
+3. ** Download and Extract Galileo**
+```bash
+cd $HOME
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.1/galileo-v1.1.1.tar.gz
+tar -xzf galileo-v1.1.1.tar.gz
+rm galileo-v1.1.1.tar.gz
+cd galileo
+chmod +x ./bin/geth ./bin/0gchaind
+```
+
+4. **Initialize Geth and 0GChainD**
+```bash
+./bin/geth init --datadir $HOME/galileo/0g-home/geth-home ./genesis.json
+./bin/0gchaind init "<YOUR_MONIKER>" --home $HOME/galileo/tmp
+```
+
+5. **Configure Node**
+```bash
+cp $HOME/galileo/tmp/data/priv_validator_state.json $HOME/galileo/0g-home/0gchaind-home/data/
+cp $HOME/galileo/tmp/config/node_key.json $HOME/galileo/0g-home/0gchaind-home/config/
+cp $HOME/galileo/tmp/config/priv_validator_key.json $HOME/galileo/0g-home/0gchaind-home/config/
+
+mkdir -p $HOME/.0gchaind
+mv $HOME/galileo/0g-home $HOME/.0gchaind/
+```
+
+6. **Setup Trusted Setup Files**
+
+```bash
+[ ! -f "$HOME/galileo/jwt-secret.hex" ] && openssl rand -hex 32 > $HOME/galileo/jwt-secret.hex
+[ ! -f "$HOME/galileo/kzg-trusted-setup.json" ] && curl -L -o $HOME/galileo/kzg-trusted-setup.json https://danksharding.io/trusted-setup/kzg-trusted-setup.json
+```
+
+7. **Configure Systemd Services**
+
+Setup `0gchaind.service`
+```bash
+sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
+[Unit]
+Description=0GChainD Service
+After=network.target
+
+[Service]
+User=$USER
+WorkingDirectory=$HOME/galileo
+ExecStart=$HOME/galileo/bin/0gchaind start --rpc.laddr tcp://0.0.0.0:26657 --chain-spec devnet --kzg.trusted-setup-path=$HOME/galileo/kzg-trusted-setup.json --engine.jwt-secret-path=$HOME/galileo/jwt-secret.hex --kzg.implementation=crate-crypto/go-kzg-4844 --block-store-service.enabled --node-api.enabled --node-api.logging --node-api.address 0.0.0.0:3500 --pruning=nothing --home=$HOME/.0gchaind/0g-home/0gchaind-home
+Restart=always
+RestartSec=5
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+Setup `geth.service`
+```bash
+sudo tee /etc/systemd/system/geth.service > /dev/null <<EOF
+[Unit]
+Description=Geth Service for 0GChainD
+After=network.target
+
+[Service]
+User=$USER
+WorkingDirectory=$HOME/galileo
+ExecStart=$HOME/galileo/bin/geth --config $HOME/galileo/geth-config.toml --nat extip=$(hostname -I | awk '{print $1}') --datadir $HOME/.0gchaind/0g-home/geth-home --networkid 16601
+Restart=always
+RestartSec=5
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+8. **Start the Service**
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable geth
+sudo systemctl enable 0gchaind
+sudo systemctl start geth
+sudo systemctl start 0gchaind
+```
+
+9. **Verify Installation**
+```bash
+journalctl -u 0gchaind -u geth -f
+```
+
 ## Useful Commands
 
 Check logs
