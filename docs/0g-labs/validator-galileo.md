@@ -48,6 +48,8 @@ curl -s localhost:26657/status | jq .result.sync_info
 
 ## Snapshot
 
+https://vault.astrostake.xyz/0g-labs/validator-snapshot/ stores the last 2 snapshots
+
 block: `302,600`
 
 size:
