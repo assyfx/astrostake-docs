@@ -129,12 +129,12 @@ Download new config
 rm -rf $HOME/0g-storage-node/run/config.toml
 curl -o $HOME/0g-storage-node/run/config.toml https://vault.astrostake.xyz/0g-labs/config-v3.toml
 ```
-:::info
-check `miner_key` and input your private key
+
+> Check `miner_key` and input your private key
 ```bash
 nano $HOME/0g-storage-node/run/config.toml
 ```
-:::
+
 == Edit old config
 Edit `config.toml`
 ```bash
