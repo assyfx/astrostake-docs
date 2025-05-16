@@ -135,7 +135,7 @@ curl -o $HOME/0g-storage-node/run/config.toml https://vault.astrostake.xyz/0g-la
 nano $HOME/0g-storage-node/run/config.toml
 ```
 
-== Edit old config
+== Edit existing config
 Edit `config.toml`
 ```bash
 nano $HOME/0g-storage-node/run/config.toml
