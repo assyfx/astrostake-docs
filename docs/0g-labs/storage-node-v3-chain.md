@@ -133,6 +133,7 @@ check `miner_key` and input your private key
 ```bash
 nano $HOME/0g-storage-node/run/config.toml
 ```
+:::
 
 Restart zgs service
 ```bash
