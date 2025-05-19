@@ -8,7 +8,7 @@ This guide will help you set up a Aztec Sequencer Node. For official documentati
 - RAM : 16GB
 - Disk : 1 TB
 
-## Preparataion
+## Preparation
 
 1. **EVM Wallet Private Key**
 2. **ETH Sepolia Faucet**
@@ -121,7 +121,7 @@ aztec add-l1-validator \
   --staking-asset-handler 0xF739D03e98e23A7B65940848aBA8921fF3bAc4b2 \
   --l1-chain-id 11155111
 ```
-Cek validator via cast call
+:::info Cek validator via cast call
 ```bash
 curl -L https://foundry.paradigm.xyz | bash
 ```
@@ -132,3 +132,4 @@ change `YOUR_WALLET_ADDRESS`
 ```bash
 cast call 0x8d1cc702453fa889f137dbd5734cdb7ee96b6ba0 "getInfo(address)" YOUR_WALLET_ADDRESS --rpc-url https://sepolia.drpc.org
 ```
+:::
