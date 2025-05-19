@@ -38,7 +38,16 @@ curl -s -X POST -H 'Content-Type: application/json' \
 -d '{"jsonrpc":"2.0","method":"node_getL2Tips","params":[],"id":67}' \
 http://localhost:8080 | jq -r ".result.proven.number"
 ```
+Get Proof
+```bash
+BLOCK_NUMBER=$(curl -s -X POST -H 'Content-Type: application/json' \
+  -d '{"jsonrpc":"2.0","method":"node_getL2Tips","params":[],"id":67}' \
+  http://localhost:8080 | jq -r ".result.proven.number")
 
+curl -s -X POST -H 'Content-Type: application/json' \
+  -d "{\"jsonrpc\":\"2.0\",\"method\":\"node_getArchiveSiblingPath\",\"params\":[\"$BLOCK_NUMBER\",\"$BLOCK_NUMBER\"],\"id\":67}" \
+  http://localhost:8080 | jq -r ".result"
+```
 Check PeerId. https://aztec.nethermind.io/
 ```bash
 sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-testnet | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
@@ -53,4 +62,15 @@ aztec add-l1-validator \
   --proposer-eoa your-validator-address \
   --staking-asset-handler 0xF739D03e98e23A7B65940848aBA8921fF3bAc4b2 \
   --l1-chain-id 11155111
+```
+Cek validator via cast call
+```bash
+curl -L https://foundry.paradigm.xyz | bash
+```
+```bash
+source ~/.bashrc
+```
+change `YOUR_WALLET_ADDRESS`
+```bash
+cast call 0x8d1cc702453fa889f137dbd5734cdb7ee96b6ba0 "getInfo(address)" YOUR_WALLET_ADDRESS --rpc-url https://sepolia.drpc.org
 ```

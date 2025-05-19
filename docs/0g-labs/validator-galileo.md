@@ -103,7 +103,20 @@ After=network.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/galileo
-ExecStart=/usr/local/bin/0gchaind start --rpc.laddr tcp://0.0.0.0:26657 --chain-spec devnet --kzg.trusted-setup-path=$HOME/galileo/kzg-trusted-setup.json --engine.jwt-secret-path=$HOME/galileo/jwt-secret.hex --kzg.implementation=crate-crypto/go-kzg-4844 --block-store-service.enabled --node-api.enabled --node-api.logging --node-api.address 0.0.0.0:3500 --pruning=nothing --home=$HOME/.0gchaind/0g-home/0gchaind-home
+ExecStart=/usr/local/bin/0gchaind start \
+  --rpc.laddr tcp://0.0.0.0:26657 \
+  --chain-spec devnet \
+  --kzg.trusted-setup-path=$HOME/galileo/kzg-trusted-setup.json \
+  --engine.jwt-secret-path=$HOME/galileo/jwt-secret.hex \
+  --kzg.implementation=crate-crypto/go-kzg-4844 \
+  --block-store-service.enabled \
+  --node-api.enabled \
+  --node-api.logging \
+  --node-api.address 0.0.0.0:3500 \
+  --pruning=nothing \
+  --home=$HOME/.0gchaind/0g-home/0gchaind-home \
+  --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
+  --p2p.external_address=\$(hostname -I | awk '{print \$1}'):26656
 Restart=always
 RestartSec=5
 LimitNOFILE=4096
@@ -123,7 +136,11 @@ After=network.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/galileo
-ExecStart=/usr/local/bin/geth --config $HOME/galileo/geth-config.toml --nat extip=$(hostname -I | awk '{print $1}') --datadir $HOME/.0gchaind/0g-home/geth-home --networkid 16601
+ExecStart=/usr/local/bin/geth --config $HOME/galileo/geth-config.toml \
+  --nat extip:\$(hostname -I | awk '{print \$1}') \
+  --bootnodes enode://de7b86d8ac452b1413983049c20eafa2ea0851a3219c2cc12649b971c1677bd83fe24c5331e078471e52a94d95e8cde84cb9d866574fec957124e57ac6056699@8.218.88.60:30303 \
+  --datadir $HOME/.0gchaind/0g-home/geth-home \
+  --networkid 16601
 Restart=always
 RestartSec=5
 LimitNOFILE=4096
@@ -132,7 +149,6 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 EOF
 ```
-
 8. **Start the Service**
 ```bash
 sudo systemctl daemon-reload
