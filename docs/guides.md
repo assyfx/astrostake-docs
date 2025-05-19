@@ -25,3 +25,7 @@ From one-click installs to validator creation, this section contains all AstroSt
 
 ## 🌱 Drosera
 - [Drosera Setup Guide](/drosera/)
+
+## 🛡️ Aztec
+- [Overview](/aztec/)
+- [Aztec Sequencer Node Setup](/aztec/sequencer-node)

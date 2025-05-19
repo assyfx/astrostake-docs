@@ -59,7 +59,8 @@ export default defineConfig({
               text: 'Aztec',
               collapsed: true,
               items: [
-                { text: 'Sequencer Node', link: '/aztec/' }
+                { text: 'Overview', link: '/aztec/' },
+                { text: 'Sequencer Node', link: '/aztec/sequencer-node' }
               ]
             },
             {
@@ -160,6 +161,12 @@ export default defineConfig({
   },
 
   themeConfig: {
+    repo: 'assyfx/astrostake-docs',
+
+    editLink: {
+      pattern: 'https://github.com/assyfx/astrostake-docs/edit/main/docs/:path',
+      text: 'Edit this page on GitHub'
+    },
     socialLinks: [
       { icon: 'twitter', link: 'https://x.com/AstroStake' },
       { icon: 'discord', link: 'https://discord.com/users/248382810631438337' },
