@@ -16,7 +16,7 @@ The snapshot is now available for download. Using the snapshot will significantl
 ## One-click Snapshot Installer
 
 ```bash
-bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/0g_storage_node_snapshot_v3.sh)
+bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/galileo/0g_storage_node_snapshot_v3.sh)
 ```
 
 ## Manual Install Snapshot
@@ -100,12 +100,12 @@ tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
 
 **Check Blocks and Peers**
 ```bash
-source <(curl -s https://vault.astrostake.xyz/0g-labs/check_block.sh)
+source <(curl -s https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/check_block.sh)
 ```
 
 **Change RPC**
 ```bash
-bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/change_storage_rpc.sh)
+bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/change_storage_rpc.sh)
 ```
 
 ## Remove data_db

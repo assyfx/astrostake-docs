@@ -27,7 +27,7 @@ Version: `v1.0.0`
 
 ## One-Click Command
 ```bash
-bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/upgrade_storage_node_v3.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/storage-node/galileo/migration_storage_node_v3.sh)
 ```
 
 ## Manual Install
@@ -186,13 +186,13 @@ This command only updates your node version. If you're moving from v2 to v3, mak
 
 version: `v1.0.0`
 ```bash
-bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/storage_node_update_v3.sh)
+bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/galileo/storage_node_update_v3.sh)
 ```
 
 ## One Click Command Install
 
 ```bash
-bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/0g_storage_node_v3_chain.sh)
+bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/galileo/0g_storage_node_v3_chain.sh)
 ```
 
 ## Manual Install
@@ -270,7 +270,7 @@ EOF
 ```bash
 sudo systemctl daemon-reload && sudo systemctl enable zgs && sudo systemctl start zgs
 ```
-## Optional: [Install Snapshot](https://docs.astrostake.xyz/0g-labs/snapshot-v3)
+## Optional: [Install Snapshot](/0g-labs/snapshot-v3)
 
 ## Troubleshooting
 
@@ -286,12 +286,12 @@ tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
 
 **Check Blocks and Peers**
 ```bash
-source <(curl -s https://vault.astrostake.xyz/0g-labs/check_block.sh)
+source <(curl -s https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/check_block.sh)
 ```
 
 **Change RPC**
 ```bash
-bash <(wget -qO- https://vault.astrostake.xyz/0g-labs/change_storage_rpc.sh)
+bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/change_storage_rpc.sh)
 ```
 
 ## Stop and delete node
