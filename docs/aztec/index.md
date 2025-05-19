@@ -10,14 +10,14 @@ This guide will help you set up a Aztec Sequencer Node. For official documentati
 
 ## Preparation
 
-1. **EVM Wallet Private Key**
-2. **ETH Sepolia Faucet**
-- [Google](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) Free 0.05
-- [Alchemy](https://www.alchemy.com/faucets/ethereum-sepolia) Free 0.1 (requires a minimum Ethereum mainnet balance of 0.001 ETH)
-3. **Sepolia RPC & Sepolia Beacon RPC**
-- [Alchemy](https://dashboard.alchemy.com/) Paid Sepolia RPC, but you can get trial 100M request.
-- [drpc.org](https://drpc.org) Free Beacon RPC
-- [Publicnode](https://ethereum.publicnode.com/?sepolia) Free Sepolia & Beacon RPC
+Before setting up the Aztec Sequencer Node, make sure you have the following:
+
+| Requirement               | Details |
+|-----------------------------|------------|
+| **1. EVM Wallet Private Key** | A private key from your Ethereum wallet. Needed to interact with the network. Make sure to keep it safe and never expose it publicly. |
+| **2. ETH Sepolia Faucet**    | You'll need Sepolia ETH to operate the node.<br><br>• [Google Faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) – Free 0.05 ETH<br>• [Alchemy Faucet](https://www.alchemy.com/faucets/ethereum-sepolia) – Free 0.1 ETH (requires 0.001 ETH on Ethereum Mainnet) |
+| **3. Sepolia RPC & Beacon RPC** | Access to Sepolia RPC and Beacon RPC is required.<br><br>• [Alchemy](https://dashboard.alchemy.com/) – Paid Sepolia RPC (Free 100M trial requests)<br>• [drpc.org](https://drpc.org) – Free Beacon RPC<br>• [Publicnode](https://ethereum.publicnode.com/?sepolia) – Free Sepolia & Beacon RPC |
+
 
 ## Auto Installer
 
