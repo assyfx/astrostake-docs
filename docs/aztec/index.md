@@ -14,12 +14,12 @@ This guide will help you set up a Aztec Sequencer Node. For official documentati
 2. **ETH Sepolia Faucet**
 - [Google](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) Free 0.05
 - [Alchemy](https://www.alchemy.com/faucets/ethereum-sepolia) Free 0.1 (requires a minimum Ethereum mainnet balance of 0.001 ETH)
-3. Sepolia RPC & Sepolia Beacon RPC
+3. **Sepolia RPC & Sepolia Beacon RPC**
 - [Alchemy](https://dashboard.alchemy.com/) Paid Sepolia RPC, but you can get trial 100M request.
 - [drpc.org](https://drpc.org) Free Beacon RPC
 - [Publicnode](https://ethereum.publicnode.com/?sepolia) Free Sepolia & Beacon RPC
 
-### Auto Installer
+## Auto Installer
 
 Paste this script inside screen or tmux.
 
@@ -38,7 +38,7 @@ apt install curl iptables build-essential git wget lz4 jq make gcc nano automake
 2. **Install Docker**
 
 You can skip it if you already have it installed.
-```
+```bash
 apt install apt-transport-https ca-certificates curl software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
