@@ -79,8 +79,7 @@ export default defineConfig({
                   text: 'Validator',
                   collapsed: true,
                   items: [
-                    { text: 'Validator Newton', link: '/0g-labs/validator' },
-                    { text: 'Validator Galileo', link: '/0g-labs/validator-galileo' }
+                    { text: 'Validator Newton', link: '/0g-labs/validator' }
                   ]
                 },
                 {
