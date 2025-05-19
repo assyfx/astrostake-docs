@@ -1,3 +1,12 @@
+<script setup>
+import { useRouter } from 'vitepress'
+
+const router = useRouter()
+router.go('/maintenance')
+</script>
+
+Redirecting...
+
 # 0G Galileo Validator Testnet Node Setup
 
 This guide will help you install a 0G Galileo Validator node using a combination of the best practices from the [official tutorial](https://docs.0g.ai/run-a-node/validator-node) and community enhancements.
@@ -49,77 +58,99 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile && \
 source ~/.bash_profile && \
 go version
 ```
+3. **Set Environment Variables**
 
-3. **Download and Extract Galileo**
+Change `YourMoniker` and `55` to the port you want to use.
+```bash
+echo "export MONIKER=\"YourMoniker\"" >> $HOME/.bash_profile
+echo "export OG_PORT=\"55\"" >> $HOME/.bash_profile
+echo 'export PATH=$PATH:$HOME/galileo/bin' >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+4. **Download and Extract Galileo**
 ```bash
 cd $HOME
+rm -rf galileo
 wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.1/galileo-v1.1.1.tar.gz
-tar -xzf galileo-v1.1.1.tar.gz
+tar -xzvf galileo-v1.1.1.tar.gz -C $HOME
 rm galileo-v1.1.1.tar.gz
-cd galileo
-chmod +x ./bin/geth ./bin/0gchaind
+chmod +x $HOME/galileo/bin/geth
+chmod +x $HOME/galileo/bin/0gchaind
 ```
 Move binaries to `/usr/local/bin` for global access
 ```bash
-sudo mv ./bin/geth /usr/local/bin/geth
-sudo mv ./bin/0gchaind /usr/local/bin/0gchaind
-sudo chmod +x /usr/local/bin/geth /usr/local/bin/0gchaind
+sudo cp $HOME/galileo/bin/geth /usr/local/bin/geth
+sudo cp $HOME/galileo/bin/0gchaind /usr/local/bin/0gchaind
 ```
 
-4. **Initialize Geth and 0GChainD**
+5. **Initialize the Chain**
 
-Change `<YOUR_MONIKER>`
 ```bash
-/usr/local/bin/geth init --datadir $HOME/galileo/0g-home/geth-home ./genesis.json
-/usr/local/bin/0gchaind init "<YOUR_MONIKER>" --home $HOME/galileo/tmp
-```
-
-5. **Configure Node**
-```bash
-cp $HOME/galileo/tmp/data/priv_validator_state.json $HOME/galileo/0g-home/0gchaind-home/data/
-cp $HOME/galileo/tmp/config/node_key.json $HOME/galileo/0g-home/0gchaind-home/config/
-cp $HOME/galileo/tmp/config/priv_validator_key.json $HOME/galileo/0g-home/0gchaind-home/config/
-
 mkdir -p $HOME/.0gchaind
-mv $HOME/galileo/0g-home $HOME/.0gchaind/
+mv $HOME/galileo $HOME/.0gchaind/
+
+geth init --datadir $HOME/.0gchaind/galileo/0g-home/geth-home $HOME/.0gchaind/galileo/genesis.json
+
+rm -rf $HOME/.0gchaind/galileo/0g-home/0gchaind-home
+0gchaind init $MONIKER --home $HOME/.0gchaind/galileo/0g-home/0gchaind-home
 ```
 
-6. **Setup Trusted Setup Files**
-
+6. **Configure Node**
+Update `config.toml`
 ```bash
-[ ! -f "$HOME/galileo/jwt-secret.hex" ] && openssl rand -hex 32 > $HOME/galileo/jwt-secret.hex
-[ ! -f "$HOME/galileo/kzg-trusted-setup.json" ] && curl -L -o $HOME/galileo/kzg-trusted-setup.json https://danksharding.io/trusted-setup/kzg-trusted-setup.json
+sed -i -e "s/^moniker *=.*/moniker = \"$MONIKER\"/" $HOME/.0gchaind/galileo/0g-home/0gchaind-home/config/config.toml
+```
+Update `geth-config.toml` Ports
+```bash
+sed -i "s/HTTPPort = .*/HTTPPort = ${OG_PORT}545/" $HOME/.0gchaind/galileo/geth-config.toml
+sed -i "s/WSPort = .*/WSPort = ${OG_PORT}546/" $HOME/.0gchaind/galileo/geth-config.toml
+sed -i "s/AuthPort = .*/AuthPort = ${OG_PORT}551/" $HOME/.0gchaind/galileo/geth-config.toml
+sed -i "s/ListenAddr = .*/ListenAddr = \":${OG_PORT}303\"/" $HOME/.0gchaind/galileo/geth-config.toml
+sed -i "s/^# *Port = .*/# Port = ${OG_PORT}901/" $HOME/.0gchaind/galileo/geth-config.toml
+sed -i "s/^# *InfluxDBEndpoint = .*/# InfluxDBEndpoint = \"http:\/\/localhost:${OG_PORT}086\"/" $HOME/.0gchaind/galileo/geth-config.toml
+```
+Update `config.toml` and `app.toml` for 0gchaind
+```bash
+# config.toml
+CONFIG="$HOME/.0gchaind/galileo/0g-home/0gchaind-home/config"
+
+sed -i "s/laddr = \"tcp:\/\/0\.0\.0\.0:26656\"/laddr = \"tcp:\/\/0\.0\.0\.0:${OG_PORT}656\"/" $CONFIG/config.toml
+sed -i "s/laddr = \"tcp:\/\/127\.0\.0\.1:26657\"/laddr = \"tcp:\/\/127\.0\.0\.1:${OG_PORT}657\"/" $CONFIG/config.toml
+sed -i "s/^proxy_app = .*/proxy_app = \"tcp:\/\/127\.0\.0\.1:${OG_PORT}658\"/" $CONFIG/config.toml
+sed -i "s/^pprof_laddr = .*/pprof_laddr = \"0.0.0.0:${OG_PORT}060\"/" $CONFIG/config.toml
+sed -i "s/prometheus_listen_addr = \".*\"/prometheus_listen_addr = \"0.0.0.0:${OG_PORT}660\"/" $CONFIG/config.toml
+
+# app.toml
+sed -i "s/address = \".*:3500\"/address = \"127.0.0.1:${OG_PORT}500\"/" $CONFIG/app.toml
+sed -i "s/^rpc-dial-url *=.*/rpc-dial-url = \"http:\/\/localhost:${OG_PORT}551\"/" $CONFIG/app.toml
+```
+Disable Indexer
+```bash
+sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $CONFIG/config.toml
 ```
 
-7. **Configure Systemd Services**
+8. **Configure Systemd Services**
 
 Setup `0gchaind.service`
 ```bash
 sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
 [Unit]
-Description=0GChainD Service
-After=network.target
+Description=0gchaind Node Service
+After=network-online.target
 
 [Service]
 User=$USER
-WorkingDirectory=$HOME/galileo
+Environment=CHAIN_SPEC=devnet
+WorkingDirectory=$HOME/.0gchaind/galileo
 ExecStart=/usr/local/bin/0gchaind start \
-  --rpc.laddr tcp://0.0.0.0:26657 \
-  --chain-spec devnet \
-  --kzg.trusted-setup-path=$HOME/galileo/kzg-trusted-setup.json \
-  --engine.jwt-secret-path=$HOME/galileo/jwt-secret.hex \
+  --home $HOME/.0gchaind/galileo/0g-home/0gchaind-home \
+  --kzg.trusted-setup-path=$HOME/.0gchaind/galileo/kzg-trusted-setup.json \
+  --engine.jwt-secret-path=$HOME/.0gchaind/galileo/jwt-secret.hex \
   --kzg.implementation=crate-crypto/go-kzg-4844 \
-  --block-store-service.enabled \
-  --node-api.enabled \
-  --node-api.logging \
-  --node-api.address 0.0.0.0:3500 \
-  --pruning=nothing \
-  --home=$HOME/.0gchaind/0g-home/0gchaind-home \
-  --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
-  --p2p.external_address=\$(hostname -I | awk '{print \$1}'):26656
 Restart=always
-RestartSec=5
-LimitNOFILE=4096
+RestartSec=3
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target
@@ -130,20 +161,24 @@ Setup `geth.service`
 ```bash
 sudo tee /etc/systemd/system/geth.service > /dev/null <<EOF
 [Unit]
-Description=Geth Service for 0GChainD
-After=network.target
+Description=0g Geth Node Service
+After=network-online.target
 
 [Service]
 User=$USER
-WorkingDirectory=$HOME/galileo
-ExecStart=/usr/local/bin/geth --config $HOME/galileo/geth-config.toml \
-  --nat extip:\$(hostname -I | awk '{print \$1}') \
+WorkingDirectory=$HOME/.0gchaind/galileo
+ExecStart=/usr/local/bin/geth \
+  --config $HOME/.0gchaind/galileo/geth-config.toml \
+  --datadir $HOME/.0gchaind/galileo/0g-home/geth-home \
+  --networkid 16601 \
+  --http.port ${OG_PORT}545 \
+  --ws.port ${OG_PORT}546 \
+  --authrpc.port ${OG_PORT}551 \
   --bootnodes enode://de7b86d8ac452b1413983049c20eafa2ea0851a3219c2cc12649b971c1677bd83fe24c5331e078471e52a94d95e8cde84cb9d866574fec957124e57ac6056699@8.218.88.60:30303 \
-  --datadir $HOME/.0gchaind/0g-home/geth-home \
-  --networkid 16601
+  --port ${OG_PORT}303
 Restart=always
-RestartSec=5
-LimitNOFILE=4096
+RestartSec=3
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target
@@ -152,10 +187,10 @@ EOF
 8. **Start the Service**
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable geth
 sudo systemctl enable 0gchaind
-sudo systemctl start geth
+sudo systemctl enable geth
 sudo systemctl start 0gchaind
+sudo systemctl start geth
 ```
 
 9. **Verify Installation**
