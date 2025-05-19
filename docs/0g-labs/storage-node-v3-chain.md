@@ -186,13 +186,13 @@ This command only updates your node version. If you're moving from v2 to v3, mak
 
 version: `v1.0.0`
 ```bash
-bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/galileo/storage_node_update_v3.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/storage-node/galileo/storage_node_update_v3.sh)
 ```
 
 ## One Click Command Install
 
 ```bash
-bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/galileo/0g_storage_node_v3_chain.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/storage-node/galileo/0g_storage_node_v3_chain.sh)
 ```
 
 ## Manual Install
@@ -286,12 +286,12 @@ tail -f ~/0g-storage-node/run/log/zgs.log.$(TZ=UTC date +%Y-%m-%d)
 
 **Check Blocks and Peers**
 ```bash
-source <(curl -s https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/check_block.sh)
+source <(curl -s https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/storage-node/check_block.sh)
 ```
 
 **Change RPC**
 ```bash
-bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/storage-node/change_storage_rpc.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/storage-node/change_storage_rpc.sh)
 ```
 
 ## Stop and delete node

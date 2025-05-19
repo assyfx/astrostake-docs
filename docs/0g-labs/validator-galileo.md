@@ -21,12 +21,12 @@ In the meantime, you can:
 
 Version: `v1.1.1`
 ```bash
-bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/validator/galileo/validator_install.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/validator/galileo/validator_install.sh)
 ```
 
 Update from `v1.1.0` to `v1.1.1`
 ```bash
-bash <(wget -qO- https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/validator/galileo/validator_update.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/validator/galileo/validator_update.sh)
 ```
 
 ## Manual Install
@@ -172,7 +172,7 @@ journalctl -u 0gchaind -u geth -f
 
 Check Blocks
 ```bash
-source <(curl -s https://github.com/astrostake/0G-Labs-script/raw/refs/heads/main/validator/galileo/check_block_validator.sh)
+source <(curl -s https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/validator/check_block_validator.sh)
 ```
 
 check node status
