@@ -10,25 +10,83 @@ This guide will help you set up a Aztec Sequencer Node. For official documentati
 
 ## Preparataion
 
-1. EVM Wallet Private Key
-2. ETH Sepolia Faucet
+1. **EVM Wallet Private Key**
+2. **ETH Sepolia Faucet**
+- [Google](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) Free 0.05
+- [Alchemy](https://www.alchemy.com/faucets/ethereum-sepolia) Free 0.1 (requires a minimum Ethereum mainnet balance of 0.001 ETH)
 3. Sepolia RPC & Sepolia Beacon RPC
 - [Alchemy](https://dashboard.alchemy.com/) Paid Sepolia RPC, but you can get trial 100M request.
 - [drpc.org](https://drpc.org) Free Beacon RPC
-- [chainstack](https://chainstack.com) Free Beacon RPC
-- [ankr](https://www.ankr.com) Paid Beacon RPC
-
-## Installation
-
-Prefer to set it up manually? Follow the instructions in our community-maintained guide: [Maouam's Node Lab](https://maouam.nodelab.my.id/aztec/sequencer-node/).
+- [Publicnode](https://ethereum.publicnode.com/?sepolia) Free Sepolia & Beacon RPC
 
 ### Auto Installer
 
 Paste this script inside screen or tmux.
 
+This script is not updated, please use manual installation.
+
 ```bash
 bash <(wget -qO- https://vault.astrostake.xyz/aztec/aztec_sequencer_install.sh)
 ```
+
+## Manual Installation
+
+1. **Install Dependencies**
+```bash
+apt install curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev -y
+```
+2. **Install Docker**
+
+You can skip it if you already have it installed.
+```
+apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt update
+apt-cache policy docker-ce
+apt install docker-ce -y
+systemctl restart docker
+systemctl enable docker
+```
+Verify
+```bash
+docker --version
+```
+3. **Install Aztec**
+```bash
+bash -i <(curl -s https://install.aztec.network)
+```
+```bash
+echo 'export PATH="$PATH:/root/.aztec/bin"' >> ~/.bashrc && source ~/.bashrc
+```
+Verify Installation
+```bash
+aztec
+```
+4. **Setup Alpha Testnet**
+```bash
+aztec-up alpha-testnet
+```
+5. **Run Aztec**
+
+Open tmux or screen. In this case i will use tmux
+```bash
+tmux new -s aztec
+```
+:::info Configure
+
+`--l1-rpc-urls` `--l1-consensus-host-urls` `--sequencer.validatorPrivateKey` `--sequencer.coinbase` `--p2p.p2pIp` 
+```bash
+aztec start --node --archiver --sequencer \
+  --network alpha-testnet \
+  --l1-rpc-urls https://your-sepolia-rpc  \
+  --l1-consensus-host-urls https://your-beacon-rpc \
+  --sequencer.validatorPrivateKey 0xYourPrivateKey \
+  --sequencer.coinbase 0xYourAddress \
+  --p2p.p2pIp YOUR_PUBLIC_IP
+  --p2p.maxTxPoolSize 1000000000
+```
+:::
 
 ## Usefull Command
 
@@ -48,7 +106,7 @@ curl -s -X POST -H 'Content-Type: application/json' \
   -d "{\"jsonrpc\":\"2.0\",\"method\":\"node_getArchiveSiblingPath\",\"params\":[\"$BLOCK_NUMBER\",\"$BLOCK_NUMBER\"],\"id\":67}" \
   http://localhost:8080 | jq -r ".result"
 ```
-Check PeerId. https://aztec.nethermind.io/
+Check PeerId and search on https://aztec.nethermind.io/
 ```bash
 sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-testnet | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
 ```
