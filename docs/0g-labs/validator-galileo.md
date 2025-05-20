@@ -1,12 +1,3 @@
-<script setup>
-import { useRouter } from 'vitepress'
-
-const router = useRouter()
-router.go('/maintenance')
-</script>
-
-Redirecting...
-
 # 0G Galileo Validator Testnet Node Setup
 
 This guide will help you install a 0G Galileo Validator node using a combination of the best practices from the [official tutorial](https://docs.0g.ai/run-a-node/validator-node) and community enhancements.
@@ -88,14 +79,17 @@ sudo cp $HOME/galileo/bin/0gchaind /usr/local/bin/0gchaind
 
 ```bash
 mkdir -p $HOME/.0gchaind
-mv $HOME/galileo $HOME/.0gchaind/
+cp -r $HOME/galileo $HOME/.0gchaind/
 
 geth init --datadir $HOME/.0gchaind/galileo/0g-home/geth-home $HOME/.0gchaind/galileo/genesis.json
 
-rm -rf $HOME/.0gchaind/galileo/0g-home/0gchaind-home
-0gchaind init $MONIKER --home $HOME/.0gchaind/galileo/0g-home/0gchaind-home
+0gchaind init $MONIKER --home $HOME/.0gchaind/tmp
 ```
-
+```bash
+cp $HOME/.0gchaind/tmp/data/priv_validator_state.json $HOME/.0gchaind/galileo/0g-home/0gchaind-home/data/
+cp $HOME/.0gchaind/tmp/config/node_key.json $HOME/.0gchaind/galileo/0g-home/0gchaind-home/config/
+cp $HOME/.0gchaind/tmp/config/priv_validator_key.json $HOME/.0gchaind/galileo/0g-home/0gchaind-home/config/
+```
 6. **Configure Node**
 Update `config.toml`
 ```bash
@@ -144,10 +138,18 @@ User=$USER
 Environment=CHAIN_SPEC=devnet
 WorkingDirectory=$HOME/.0gchaind/galileo
 ExecStart=/usr/local/bin/0gchaind start \
+  --chain-spec devnet \
   --home $HOME/.0gchaind/galileo/0g-home/0gchaind-home \
   --kzg.trusted-setup-path=$HOME/.0gchaind/galileo/kzg-trusted-setup.json \
   --engine.jwt-secret-path=$HOME/.0gchaind/galileo/jwt-secret.hex \
   --kzg.implementation=crate-crypto/go-kzg-4844 \
+  --block-store-service.enabled \
+  --node-api.enabled \
+  --node-api.logging \
+  --node-api.address 0.0.0.0:3500 \
+  --pruning=nothing \
+  --home=$HOME/.0gchaind/galileo/0g-home/0gchaind-home \
+  --p2p.seeds=bac83a636b003495b2aa6bb123d1450c2ab1a364@og-testnet-seed.itrocket.net:47656 \
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
@@ -176,6 +178,7 @@ ExecStart=/usr/local/bin/geth \
   --authrpc.port ${OG_PORT}551 \
   --bootnodes enode://de7b86d8ac452b1413983049c20eafa2ea0851a3219c2cc12649b971c1677bd83fe24c5331e078471e52a94d95e8cde84cb9d866574fec957124e57ac6056699@8.218.88.60:30303 \
   --port ${OG_PORT}303
+  --networkid 16601
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
