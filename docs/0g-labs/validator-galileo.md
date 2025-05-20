@@ -19,6 +19,10 @@ In the meantime, you can:
 
 ## Auto Install
 
+**We recommend using the manual installation method instead of the auto-install script.**
+
+While the auto-install script provides a quick setup, it currently **does not support custom port configuration**. If you need more flexibility—such as setting your own port range—we suggest following the manual steps to ensure full control over your setup.
+
 Version: `v1.1.1`
 ```bash
 bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/validator/galileo/validator_install.sh)
@@ -143,13 +147,9 @@ ExecStart=/usr/local/bin/0gchaind start \
   --kzg.trusted-setup-path=$HOME/.0gchaind/galileo/kzg-trusted-setup.json \
   --engine.jwt-secret-path=$HOME/.0gchaind/galileo/jwt-secret.hex \
   --kzg.implementation=crate-crypto/go-kzg-4844 \
-  --block-store-service.enabled \
-  --node-api.enabled \
-  --node-api.logging \
-  --node-api.address 0.0.0.0:3500 \
-  --pruning=nothing \
   --home=$HOME/.0gchaind/galileo/0g-home/0gchaind-home \
-  --p2p.seeds=bac83a636b003495b2aa6bb123d1450c2ab1a364@og-testnet-seed.itrocket.net:47656 \
+  --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
+  --p2p.external_address=$(curl -4 -s ifconfig.me):${OG_PORT}656 \
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
