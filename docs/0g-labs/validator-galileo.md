@@ -149,7 +149,7 @@ ExecStart=/usr/local/bin/0gchaind start \
   --kzg.implementation=crate-crypto/go-kzg-4844 \
   --home=$HOME/.0gchaind/galileo/0g-home/0gchaind-home \
   --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
-  --p2p.external_address=$(curl -4 -s ifconfig.me):${OG_PORT}656 \
+  --p2p.external_address=$(curl -4 -s ifconfig.me):${OG_PORT}656
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
@@ -177,7 +177,7 @@ ExecStart=/usr/local/bin/geth \
   --ws.port ${OG_PORT}546 \
   --authrpc.port ${OG_PORT}551 \
   --bootnodes enode://de7b86d8ac452b1413983049c20eafa2ea0851a3219c2cc12649b971c1677bd83fe24c5331e078471e52a94d95e8cde84cb9d866574fec957124e57ac6056699@8.218.88.60:30303 \
-  --port ${OG_PORT}303
+  --port ${OG_PORT}303 \
   --networkid 16601
 Restart=always
 RestartSec=3
@@ -203,38 +203,56 @@ journalctl -u 0gchaind -u geth -f
 
 ## Useful Commands
 
-Check logs
+**Check logs**
 ```bash
 journalctl -u 0gchaind -u geth -f
 ```
 
-Check Blocks
+**Check Blocks**
 ```bash
 source <(curl -s https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/validator/check_block_validator.sh)
 ```
 
-check node status
+**Check node status**
+
+Adjust to the port you are using
 ```bash
 curl -s localhost:26657/status | jq .result.sync_info
 ```
 
-## Snapshot
+## Validator RPC Snapshot
+
+:::info 🔐 Security Notes
+**This snapshot includes only:**
+
+- data/ directory for 0gchaind
+
+- geth/ directory for EVM
+
+- genesis.json (required)
+
+**It does NOT contain:**
+
+- priv_validator_key.json (validator signing key)
+
+- node_key.json (p2p ID)
+:::
 
 https://vault.astrostake.xyz/0g-labs/validator-snapshot/ stores the last 2 snapshots
 
-block: `302,600`
+block: `578,565`
 
 size:
-- `0gchaind_snapshot_20250515-232711.tar.gz` – for Cosmos state `1.49 GB`
-- `geth_snapshot_20250515-232711.tar.gz` – for EVM state `1.31 GB`
+- `0gchaind_snapshot_20250520-223437.tar.gz` – for Cosmos state `3.93 GB`
+- `geth_snapshot_20250520-223437.tar.gz` – for EVM state `6.56 GB`
 
 1. **Download**
 ```bash
 mkdir -p ~/snapshot
 cd ~/snapshot
 
-wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/0gchaind_snapshot_20250515-232711.tar.gz
-wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/geth_snapshot_20250515-232711.tar.gz
+wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/0gchaind_snapshot_20250520-223437.tar.gz
+wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/geth_snapshot_20250520-223437.tar.gz
 ```
 
 2. **stop node**
@@ -259,39 +277,16 @@ rm -rf ~/.0gchaind/0g-home/geth-home/geth
 
 4. **Extract Snapshot**
 ```bash
-pv 0gchaind_snapshot_20250515-232711.tar.gz | tar xz -C ~/.0gchaind/0g-home/
-pv geth_snapshot_20250515-232711.tar.gz | tar xz -C ~/.0gchaind/0g-home/
+pv 0gchaind_snapshot_20250520-223437.tar.gz | tar xz -C ~/.0gchaind/0g-home/
+pv geth_snapshot_20250520-223437.tar.gz | tar xz -C ~/.0gchaind/0g-home/
 ```
 > 🧭 Note: If you're using `~/galileo/0g-home/` instead of `~/.0gchaind/0g-home/`, adjust the paths accordingly.
 
 5. **Start Node**
 ```bash
-sudo systemctl start geth # Or: sudo systemctl start 0ggeth
 sudo systemctl start 0gchaind
+sudo systemctl start geth # Or: sudo systemctl start 0ggeth
 ```
-
-check node status
-```bash
-curl -s localhost:26657/status | jq .result.sync_info
-```
-
-## Security Notes
-
-:::info 🔐 Security Notes
-**This snapshot includes only:**
-
-- data/ directory for 0gchaind
-
-- geth/ directory for EVM
-
-- genesis.json (required)
-
-**It does NOT contain:**
-
-- priv_validator_key.json (validator signing key)
-
-- node_key.json (p2p ID
-:::
 
 ## Delete Validator
 
@@ -309,4 +304,5 @@ sudo rm /etc/systemd/system/geth.service
 sudo systemctl daemon-reload
 sudo rm -f $(which 0gchaind)
 sudo rm -rf $HOME/.0gchaind
+sudo rm -rf $HOME/galileo
 ```
