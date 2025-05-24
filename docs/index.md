@@ -71,6 +71,16 @@ Choose a network below to access node setup guides, staking portals, RPC status,
 
   <div class="project-item">
     <div class="project-header">
+      <img src="/logos/empeiria.png" alt="Empeiria" />
+      <div class="project-title">Empeiria</div>
+    </div>
+    <div class="project-buttons">
+      <a href="https://explorer.maouam.nodelab.my.id/empeiria-testnet/staking/empevaloper109zr02xrcsvaedlzzrlckut705j6nqmgwdvxtz" class="action-btn">Stake</a>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="project-header">
       <img src="/logos/drosera.png" alt="Drosera" />
       <div class="project-title">Drosera</div>
     </div>
