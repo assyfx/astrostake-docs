@@ -172,7 +172,6 @@ WorkingDirectory=$HOME/.0gchaind/galileo
 ExecStart=/usr/local/bin/geth \
   --config $HOME/.0gchaind/galileo/geth-config.toml \
   --datadir $HOME/.0gchaind/galileo/0g-home/geth-home \
-  --networkid 16601 \
   --http.port ${OG_PORT}545 \
   --ws.port ${OG_PORT}546 \
   --authrpc.port ${OG_PORT}551 \
@@ -220,6 +219,17 @@ Adjust to the port you are using
 curl -s localhost:26657/status | jq .result.sync_info
 ```
 
+**Check Port**
+
+```bash
+#install net-tools
+apt install net-tools
+
+#check port
+sudo netstat -tulpn | grep geth
+sudo netstat -tulpn | grep 0gchaind
+```
+
 ## Validator RPC Snapshot
 
 :::info 🔐 Security Notes
@@ -238,21 +248,24 @@ curl -s localhost:26657/status | jq .result.sync_info
 - node_key.json (p2p ID)
 :::
 
-https://vault.astrostake.xyz/0g-labs/validator-snapshot/ stores the last 2 snapshots
+:::info ℹ️ Snapshot Info
 
-block: `578,565`
+You can download the latest two snapshots from the [AstroStake Validator Snapshot Vault](https://vault.astrostake.xyz/0g-labs/validator-snapshot/).
 
-size:
-- `0gchaind_snapshot_20250520-223437.tar.gz` – for Cosmos state `3.93 GB`
-- `geth_snapshot_20250520-223437.tar.gz` – for EVM state `6.56 GB`
+Block Height: `796,230`
+
+Size:
+- `0gchaind_snapshot_20250524-111547.tar.gz` – Cosmos state `6.17 GB`
+- `geth_snapshot_20250524-111547.tar.gz` – EVM state `12.24 GB`
+:::
 
 1. **Download**
 ```bash
 mkdir -p ~/snapshot
 cd ~/snapshot
 
-wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/0gchaind_snapshot_20250520-223437.tar.gz
-wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/geth_snapshot_20250520-223437.tar.gz
+wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/0gchaind_snapshot_20250524-111547.tar.gz
+wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/geth_snapshot_20250524-111547.tar.gz
 ```
 
 2. **stop node**
@@ -263,24 +276,37 @@ sudo systemctl stop 0gchaind
 
 Optional: Backup
 ```bash
-mv ~/.0gchaind/0g-home/0gchaind-home/data ~/.0gchaind/0g-home/0gchaind-home/data.bak.$(date +%s)
-mv ~/.0gchaind/0g-home/geth-home/geth ~/.0gchaind/0g-home/geth-home/geth.bak.$(date +%s)
+mv ~/.0gchaind/galileo/0g-home/0gchaind-home/data ~/.0gchaind/galileo/0g-home/0gchaind-home/data.bak.$(date +%s)
+mv ~/.0gchaind/galileo/0g-home/geth-home/geth ~/.0gchaind/galileo/0g-home/geth-home/geth.bak.$(date +%s)
 ```
-> 🧭 Note: If you're using `~/galileo/0g-home/` instead of `~/.0gchaind/0g-home/`, adjust the paths accordingly.
+> 🧭 Note: If you're using `~/galileo/0g-home/` instead of `~/.0gchaind/galileo/0g-home/`, adjust the paths accordingly.
 
 3. **Delete Old Data**
+
+Backup `priv_validator_state.json`
 ```bash
-rm -rf ~/.0gchaind/0g-home/0gchaind-home/data
-rm -rf ~/.0gchaind/0g-home/geth-home/geth
+cp $HOME/.0gchaind/galileo/0g-home/0gchaind-home/data/priv_validator_state.json $HOME/priv_validator_state.json.backup
 ```
-> 🧭 Note: If you're using `~/galileo/0g-home/` instead of `~/.0gchaind/0g-home/`, adjust the paths accordingly.
+Delete old data
+```bash
+rm -rf ~/.0gchaind/galileo/0g-home/0gchaind-home/data
+rm -rf ~/.0gchaind/galileo/0g-home/geth-home/geth
+```
 
 4. **Extract Snapshot**
+
 ```bash
-pv 0gchaind_snapshot_20250520-223437.tar.gz | tar xz -C ~/.0gchaind/0g-home/
-pv geth_snapshot_20250520-223437.tar.gz | tar xz -C ~/.0gchaind/0g-home/
+pv 0gchaind_snapshot_20250524-111547.tar.gz | tar xz -C ~/.0gchaind/galileo/0g-home/
+pv geth_snapshot_20250524-111547.tar.gz | tar xz -C ~/.0gchaind/galileo/0g-home/
 ```
-> 🧭 Note: If you're using `~/galileo/0g-home/` instead of `~/.0gchaind/0g-home/`, adjust the paths accordingly.
+
+Restore `priv_validator_state.json`
+
+```bash
+mv $HOME/priv_validator_state.json.backup $HOME/.0gchaind/galileo/0g-home/0gchaind-home/data/priv_validator_state.json
+```
+
+> 🧭 Note: If you're using `~/galileo/0g-home/` instead of `~/.0gchaind/galileo/0g-home/`, adjust the paths accordingly.
 
 5. **Start Node**
 ```bash
@@ -293,6 +319,8 @@ sudo systemctl start geth # Or: sudo systemctl start 0ggeth
 ::: danger ⚠️ Critical: Backup Your Validator Key!
 Make sure to backup `priv_validator.key.json`.
 Do **not** lose this key — it is required to run your validator.
+
+File location: `~/.0gchaind/galileo/0g-home/0gchaind-home/config/priv_validator.key.json`
 :::
 
 ```bash
