@@ -81,7 +81,7 @@ Choose a network below to access node setup guides, staking portals, RPC status,
 
   <div class="project-item">
     <div class="project-header">
-      <img src="/logos/vana.png" alt="VANA" />
+      <img src="/logos/vana2.png" alt="VANA" />
       <div class="project-title">VANA</div>
     </div>
     <div class="project-buttons">
