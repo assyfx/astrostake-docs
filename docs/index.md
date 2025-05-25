@@ -71,31 +71,11 @@ Choose a network below to access node setup guides, staking portals, RPC status,
 
   <div class="project-item">
     <div class="project-header">
-      <img src="/logos/empeiria.png" alt="Empeiria" />
-      <div class="project-title">Empeiria</div>
-    </div>
-    <div class="project-buttons">
-      <a href="https://explorer.maouam.nodelab.my.id/empeiria-testnet/staking/empevaloper109zr02xrcsvaedlzzrlckut705j6nqmgwdvxtz" class="action-btn">Stake</a>
-    </div>
-  </div>
-
-  <div class="project-item">
-    <div class="project-header">
       <img src="/logos/drosera.png" alt="Drosera" />
       <div class="project-title">Drosera</div>
     </div>
     <div class="project-buttons">
       <a href="/drosera/" class="action-btn">Guide</a>
-    </div>
-  </div>
-
-  <div class="project-item">
-    <div class="project-header">
-      <img src="/logos/dill.png" alt="Dill" />
-      <div class="project-title">Dill</div>
-    </div>
-    <div class="project-buttons">
-      <a href="https://staker.dill.xyz/management/detail?address=0x5F15AcdeD2FF4E8d40820E3a1d2fb56106E487cf" target="_blank" class="action-btn">Stake</a>
     </div>
   </div>
 
