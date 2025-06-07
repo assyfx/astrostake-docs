@@ -9,6 +9,12 @@ export default defineConfig({
   appearance: 'dark',
   cleanUrls: true,
 
+  sitemap: {
+    hostname: 'https://docs.astrostake.xyz/',
+    lastmodDateOnly: false
+  },
+
+  lastUpdated: true,
   markdown: {
     config(md) {
       md.use(tabsMarkdownPlugin)
