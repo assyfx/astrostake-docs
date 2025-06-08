@@ -34,11 +34,13 @@ source $HOME/.bash_profile
 ```
 
 3. **Set Vars**
+
+Change `YourMoniker` and `18` to the port you want to use.
 ```bash
 echo "export WALLET="wallet"" >> $HOME/.bash_profile
-echo "export MONIKER="test"" >> $HOME/.bash_profile
+echo "export MONIKER="YourMoniker"" >> $HOME/.bash_profile
 echo "export EMPED_CHAIN_ID="empe-testnet-2"" >> $HOME/.bash_profile
-echo "export EMPED_PORT="28"" >> $HOME/.bash_profile
+echo "export EMPED_PORT="18"" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
