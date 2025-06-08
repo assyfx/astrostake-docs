@@ -67,7 +67,7 @@ emped init "test" --chain-id empe-testnet-2
 6. **Download genesis and addrbook**
 ```bash
 wget -O $HOME/.empe-chain/config/genesis.json https://vault.astrostake.xyz/empeiria/genesis.json
-wget -O $HOME/.empe-chain/config/addrbook.json  https://vault.astrostake.xyz/testnet/empeiria/addrbook.json
+wget -O $HOME/.empe-chain/config/addrbook.json  https://vault.astrostake.xyz/empeiria/addrbook.json
 ```
 
 7. **Configure Node**
