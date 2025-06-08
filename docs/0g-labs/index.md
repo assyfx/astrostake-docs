@@ -9,7 +9,7 @@ Welcome to the community-driven guide for setting up and managing various compon
 | Service               | URL |
 |-----------------------------|------------|
 |JSON-RPC | https://0g-testnet-rpc.astrostake.xyz |
-|Snapshot | https://vault.astrostake.xyz/0g-labs/ |
+|Resource | https://vault.astrostake.xyz/0g-labs/ |
 |Monitoring | https://www.astrostake.xyz/0g-status |
 
 ## 🛡️ Validator

@@ -6,6 +6,7 @@ Recommended Hardware: 4 Cores, 8GB RAM, 200GB of storage (NVME)
 |-----------------------------|------------|
 |RPC | https://empeiria-testnet-rpc.astrostake.xyz |
 |API | https://empeiria-testnet-api.astrostake.xyz |
+|Resource | https://vault.astrostake.xyz/empeiria |
 
 ## Installation
 
