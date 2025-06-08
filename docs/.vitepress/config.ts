@@ -8,6 +8,7 @@ export default defineConfig({
   description: 'Fast, simple, and reliable node setup with guides and automation tools.',
   appearance: 'dark',
   cleanUrls: true,
+  ignoreDeadLinks: true,
 
   sitemap: {
     hostname: 'https://docs.astrostake.xyz/',
