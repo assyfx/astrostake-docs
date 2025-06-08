@@ -1,6 +1,9 @@
 # Empeiria
 
-Recommended Hardware: 4 Cores, 8GB RAM, 200GB of storage (NVME)
+Recommended Hardware:
+- 4 Cores
+- 8GB RAM
+- 200GB of storage (NVME)
 
 | Service               | URL |
 |-----------------------------|------------|
