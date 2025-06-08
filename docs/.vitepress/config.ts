@@ -62,6 +62,13 @@ export default defineConfig({
           '/': [
             { text: 'Overview Guides', link: '/guides' },
             {
+              text: 'Empeiria',
+              collapsed: true,
+              items: [
+                { text: 'Installation', link: '/empeiria/' }
+              ]
+            },
+            {
               text: 'Aztec',
               collapsed: true,
               items: [

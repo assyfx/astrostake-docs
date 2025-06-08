@@ -29,3 +29,6 @@ From one-click installs to validator creation, this section contains all AstroSt
 ## 🛡️ Aztec
 - [Overview](/aztec/)
 - [Aztec Sequencer Node Setup](/aztec/sequencer-node)
+
+## Empeiria
+- [Validator Node](/empeiria/)

@@ -6,6 +6,12 @@ Welcome to the community-driven guide for setting up and managing various compon
 
 ---
 
+| Service               | URL |
+|-----------------------------|------------|
+|JSON-RPC | https://0g-testnet-rpc.astrostake.xyz |
+|Snapshot | https://vault.astrostake.xyz/0g-labs/ |
+|Monitoring | https://www.astrostake.xyz/0g-status |
+
 ## 🛡️ Validator
 
 In the 0G network, Validators play a critical role in securing the network and participating in consensus. Validators are responsible for proposing and validating new blocks, helping maintain the network’s integrity while earning rewards for their participation.

@@ -95,6 +95,7 @@ cp $HOME/.0gchaind/tmp/config/node_key.json $HOME/.0gchaind/galileo/0g-home/0gch
 cp $HOME/.0gchaind/tmp/config/priv_validator_key.json $HOME/.0gchaind/galileo/0g-home/0gchaind-home/config/
 ```
 6. **Configure Node**
+
 Update `config.toml`
 ```bash
 sed -i -e "s/^moniker *=.*/moniker = \"$MONIKER\"/" $HOME/.0gchaind/galileo/0g-home/0gchaind-home/config/config.toml
