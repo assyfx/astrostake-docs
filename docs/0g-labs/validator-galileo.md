@@ -437,8 +437,8 @@ rm -rf ~/.0gchaind/galileo/0g-home/geth-home/geth
 4. **Extract Snapshot**
 
 ```bash
-pv 0gchaind_snapshot_20250611-173536.tar.lz4 | tar xz -C ~/.0gchaind/galileo/0g-home/
-pv geth_snapshot_20250611-173536.tar.lz4 | tar xz -C ~/.0gchaind/galileo/0g-home/
+pv 0gchaind_snapshot_20250611-173536.tar.lz4 | lz4 -d | tar xf - -C ~/.0gchaind/galileo/0g-home/
+pv geth_snapshot_20250611-173536.tar.lz4 | lz4 -d | tar xf - -C ~/.0gchaind/galileo/0g-home/
 ```
 
 Restore `priv_validator_state.json`
