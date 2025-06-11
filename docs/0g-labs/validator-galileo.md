@@ -21,7 +21,7 @@ In the meantime, you can:
 
 <div class="custom-collapse">
 <details>
-  <summary>Click here to see how to update v1.2.0</summary>
+  <summary>Click here to see how to update to v1.2.0</summary>
 
 <div class="collapse-content">
 
@@ -96,7 +96,7 @@ journalctl -u 0gchaind -u geth -f
 
 <div class="custom-collapse">
 <details>
-  <summary>Click here to see how to update v1.2.0 if you are using auto installer before</summary>
+  <summary>Click here to see how to update to v1.2.0 if you are using auto installer before</summary>
 
 <div class="collapse-content">
 
@@ -114,7 +114,7 @@ rm galileo-v1.2.0.tar.gz
 chmod +x $HOME/galileo-v1.2.0/bin/geth
 chmod +x $HOME/galileo-v1.2.0/bin/0gchaind
 ```
-Move binaries to `/usr/local/bin` for global access
+Move binaries to `$HOME/galileo/bin/`
 ```bash
 sudo cp $HOME/galileo-v1.2.0/bin/geth $HOME/galileo/bin/geth
 sudo cp $HOME/galileo-v1.2.0/bin/0gchaind $HOME/galileo/bin/0gchaind
