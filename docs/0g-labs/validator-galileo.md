@@ -94,6 +94,81 @@ journalctl -u 0gchaind -u geth -f
 </details>
 </div>
 
+<div class="custom-collapse">
+<details>
+  <summary>Click here to see how to update v1.2.0 if you are using auto installer before</summary>
+
+<div class="collapse-content">
+
+1. **Stop Service**
+
+```bash
+systemctl stop 0gchaind geth
+```
+
+2. **Download latest binaries**
+```bash
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.2.0/galileo-v1.2.0.tar.gz
+tar -xzvf galileo-v1.2.0.tar.gz -C $HOME
+rm galileo-v1.2.0.tar.gz
+chmod +x $HOME/galileo-v1.2.0/bin/geth
+chmod +x $HOME/galileo-v1.2.0/bin/0gchaind
+```
+Move binaries to `/usr/local/bin` for global access
+```bash
+sudo cp $HOME/galileo-v1.2.0/bin/geth $HOME/galileo/bin/geth
+sudo cp $HOME/galileo-v1.2.0/bin/0gchaind $HOME/galileo/bin/0gchaind
+```
+
+3. **Replace systemd service**
+```bash
+sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
+[Unit]
+Description=0GChainD Service
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/galileo
+ExecStart=/root/galileo/bin/0gchaind start \
+    --rpc.laddr tcp://0.0.0.0:26657 \
+    --chaincfg.chain-spec devnet \
+    --chaincfg.kzg.trusted-setup-path=/root/galileo/kzg-trusted-setup.json \
+    --chaincfg.engine.jwt-secret-path=/root/galileo/jwt-secret.hex \
+    --chaincfg.kzg.implementation=crate-crypto/go-kzg-4844 \
+    --chaincfg.block-store-service.enabled \
+    --chaincfg.node-api.enabled \
+    --chaincfg.node-api.logging \
+    --chaincfg.node-api.address 0.0.0.0:3500 \
+    --pruning=nothing \
+    --home=/root/.0gchaind/0g-home/0gchaind-home \
+    --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
+    --p2p.external_address=89.58.12.214:26656
+Restart=always
+RestartSec=5
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+4. **Restart service**
+
+```bash
+systemctl daemon-reload
+systemctl restart 0gchaind
+systemctl restart geth
+```
+
+Check logs
+```bash
+journalctl -u 0gchaind -u geth -f
+```
+
+</div>
+</details>
+</div>
+
 ## Manual Install
 
 Version `v1.2.0`
