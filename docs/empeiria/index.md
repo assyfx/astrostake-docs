@@ -5,6 +5,10 @@ Recommended Hardware:
 - 8GB RAM
 - 200GB of storage (NVME)
 
+|Chaind ID | Last Version Tag |
+|----------|------------------|
+|empe-testnet-2 | v0.4.0 |
+
 | Service               | URL |
 |-----------------------------|------------|
 |RPC | https://empeiria-testnet-rpc.astrostake.xyz |
@@ -141,13 +145,15 @@ sudo systemctl restart emped && sudo journalctl -u emped -fo cat
 
 ---
 
+## Useful Commands
+
 **Check blocks and peers**
 ```bash
 #!/bin/bash
 rpc_port=$(grep -m 1 -oP '^laddr = "\K[^"]+' "$HOME/.empe-chain/config/config.toml" | cut -d ':' -f 3)
 while true; do
   local_height=$(curl -s localhost:$rpc_port/status | jq -r '.result.sync_info.latest_block_height')
-  network_height=$(curl -s https://empeiria-testnet-rpc.itrocket.net/status | jq -r '.result.sync_info.latest_block_height')
+  network_height=$(curl -s https://empeiria-testnet-rpc.astrostake.xyz/status | jq -r '.result.sync_info.latest_block_height')
 
   if ! [[ "$local_height" =~ ^[0-9]+$ ]] || ! [[ "$network_height" =~ ^[0-9]+$ ]]; then
     echo -e "\033[1;31mError: Invalid block height data. Retrying...\033[0m"

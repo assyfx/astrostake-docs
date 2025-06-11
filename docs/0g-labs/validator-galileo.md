@@ -33,7 +33,83 @@ Update from `v1.1.0` to `v1.1.1`
 bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/validator/galileo/validator_update.sh)
 ```
 
+## Update
+
+<div class="custom-collapse">
+<details>
+  <summary>Click here to see how to update v1.2.0</summary>
+
+<div class="collapse-content">
+
+1. **Stop Service**
+
+```bash
+systemctl stop 0gchaind geth
+```
+
+2. **Download latest binaries**
+```bash
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.2.0/galileo-v1.2.0.tar.gz
+tar -xzvf galileo-v1.2.0.tar.gz -C $HOME
+```
+Move binaries to `/usr/local/bin` for global access
+```bash
+sudo cp $HOME/galileo-v1.2.0/bin/geth /usr/local/bin/geth
+sudo cp $HOME/galileo-v1.2.0/bin/0gchaind /usr/local/bin/0gchaind
+```
+
+3. **Replace systemd service**
+
+Replace `0gchaind`
+```bash
+sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
+[Unit]
+Description=0gchaind Node Service
+After=network-online.target
+
+[Service]
+User=$USER
+Environment=CHAIN_SPEC=devnet
+WorkingDirectory=$HOME/.0gchaind/galileo
+ExecStart=/usr/local/bin/0gchaind start \
+  --chaincfg.chain-spec devnet \
+  --home $HOME/.0gchaind/galileo/0g-home/0gchaind-home \
+  --chaincfg.kzg.trusted-setup-path=$HOME/.0gchaind/galileo/kzg-trusted-setup.json \
+  --chaincfg.engine.jwt-secret-path=$HOME/.0gchaind/galileo/jwt-secret.hex \
+  --chaincfg.kzg.implementation=crate-crypto/go-kzg-4844 \
+  --chaincfg.engine.rpc-dial-url=http://localhost:${OG_PORT}551 \
+  --home=$HOME/.0gchaind/galileo/0g-home/0gchaind-home \
+  --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
+  --p2p.external_address=$(curl -4 -s ifconfig.me):${OG_PORT}656
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+4. **Restart service**
+
+```bash
+systemctl daemon-reload
+systemctl restart 0gchaind
+systemctl restart geth
+```
+
+Check logs
+```bash
+journalctl -u 0gchaind -u geth -f
+```
+
+</div>
+</details>
+</div>
+
 ## Manual Install
+
+Version `v1.2.0`
 
 1. **Install Dependencies**
 ```bash
@@ -67,9 +143,10 @@ source $HOME/.bash_profile
 ```bash
 cd $HOME
 rm -rf galileo
-wget https://github.com/0glabs/0gchain-NG/releases/download/v1.1.1/galileo-v1.1.1.tar.gz
-tar -xzvf galileo-v1.1.1.tar.gz -C $HOME
-rm galileo-v1.1.1.tar.gz
+wget https://github.com/0glabs/0gchain-NG/releases/download/v1.2.0/galileo-v1.2.0.tar.gz
+tar -xzvf galileo-v1.2.0.tar.gz -C $HOME
+mv $HOME/galileo-v1.2.0 $HOME/galileo
+rm galileo-v1.2.0.tar.gz
 chmod +x $HOME/galileo/bin/geth
 chmod +x $HOME/galileo/bin/0gchaind
 ```
@@ -143,11 +220,12 @@ User=$USER
 Environment=CHAIN_SPEC=devnet
 WorkingDirectory=$HOME/.0gchaind/galileo
 ExecStart=/usr/local/bin/0gchaind start \
-  --chain-spec devnet \
+  --chaincfg.chain-spec devnet \
   --home $HOME/.0gchaind/galileo/0g-home/0gchaind-home \
-  --kzg.trusted-setup-path=$HOME/.0gchaind/galileo/kzg-trusted-setup.json \
-  --engine.jwt-secret-path=$HOME/.0gchaind/galileo/jwt-secret.hex \
-  --kzg.implementation=crate-crypto/go-kzg-4844 \
+  --chaincfg.kzg.trusted-setup-path=$HOME/.0gchaind/galileo/kzg-trusted-setup.json \
+  --chaincfg.engine.jwt-secret-path=$HOME/.0gchaind/galileo/jwt-secret.hex \
+  --chaincfg.kzg.implementation=crate-crypto/go-kzg-4844 \
+  --chaincfg.engine.rpc-dial-url=http://localhost:${OG_PORT}551 \
   --home=$HOME/.0gchaind/galileo/0g-home/0gchaind-home \
   --p2p.seeds=85a9b9a1b7fa0969704db2bc37f7c100855a75d9@8.218.88.60:26656 \
   --p2p.external_address=$(curl -4 -s ifconfig.me):${OG_PORT}656
