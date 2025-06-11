@@ -17,22 +17,6 @@ In the meantime, you can:
 
 > Stay tuned — we’ll update this documentation as soon as validator functionality is live.
 
-## Auto Install
-
-**We recommend using the manual installation method instead of the auto-install script.**
-
-While the auto-install script provides a quick setup, it currently **does not support custom port configuration**. If you need more flexibility—such as setting your own port range—we suggest following the manual steps to ensure full control over your setup.
-
-Version: `v1.1.1`
-```bash
-bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/validator/galileo/validator_install.sh)
-```
-
-Update from `v1.1.0` to `v1.1.1`
-```bash
-bash <(wget -qO- https://raw.githubusercontent.com/astrostake/0G-Labs-script/refs/heads/main/validator/galileo/validator_update.sh)
-```
-
 ## Update
 
 <div class="custom-collapse">
