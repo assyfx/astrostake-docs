@@ -51,6 +51,9 @@ systemctl stop 0gchaind geth
 ```bash
 wget https://github.com/0glabs/0gchain-NG/releases/download/v1.2.0/galileo-v1.2.0.tar.gz
 tar -xzvf galileo-v1.2.0.tar.gz -C $HOME
+rm galileo-v1.2.0.tar.gz
+chmod +x $HOME/galileo-v1.2.0/bin/geth
+chmod +x $HOME/galileo-v1.2.0/bin/0gchaind
 ```
 Move binaries to `/usr/local/bin` for global access
 ```bash
