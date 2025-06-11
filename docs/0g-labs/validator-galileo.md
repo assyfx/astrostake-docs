@@ -393,11 +393,11 @@ sudo netstat -tulpn | grep 0gchaind
 
 You can download the latest two snapshots from the [AstroStake Validator Snapshot Vault](https://vault.astrostake.xyz/0g-labs/validator-snapshot/).
 
-Block Height: `1,571,319`
+Block Height: `1,912,552`
 
 Size:
-- `0gchaind_snapshot_20250606-034734.tar.lz4` – Cosmos state `18.74 GB`
-- `geth_snapshot_20250606-034734.tar.lz4` – EVM state `36.77 GB`
+- `0gchaind_snapshot_20250611-173536.tar.lz4` – Cosmos state `22.67 GB`
+- `geth_snapshot_20250611-173536.tar.lz4` – EVM state `46.68 GB`
 :::
 
 1. **Download**
@@ -405,8 +405,8 @@ Size:
 mkdir -p ~/snapshot
 cd ~/snapshot
 
-wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/0gchaind_snapshot_20250606-034734.tar.lz4
-wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/geth_snapshot_20250606-034734.tar.lz4
+wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/0gchaind_snapshot_20250611-173536.tar.lz4
+wget https://vault.astrostake.xyz/0g-labs/validator-snapshot/geth_snapshot_20250611-173536.tar.lz4
 ```
 
 2. **stop node**
@@ -437,8 +437,8 @@ rm -rf ~/.0gchaind/galileo/0g-home/geth-home/geth
 4. **Extract Snapshot**
 
 ```bash
-pv 0gchaind_snapshot_20250606-034734.tar.lz4 | tar xz -C ~/.0gchaind/galileo/0g-home/
-pv geth_snapshot_20250606-034734.tar.lz4 | tar xz -C ~/.0gchaind/galileo/0g-home/
+pv 0gchaind_snapshot_20250611-173536.tar.lz4 | tar xz -C ~/.0gchaind/galileo/0g-home/
+pv geth_snapshot_20250611-173536.tar.lz4 | tar xz -C ~/.0gchaind/galileo/0g-home/
 ```
 
 Restore `priv_validator_state.json`
